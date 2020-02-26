@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="#000"
+    android:background="#000"
     tools:context=".Login">
 
     <androidx.constraintlayout.widget.Guideline
@@ -44,7 +44,7 @@ android:background="#000"
         android:layout_height="70dp"
         android:layout_marginTop="73dp"
 
-        android:hint="   Username"
+        android:hint="   Useremail"
         android:textColorHint="@color/colorAccent"
         app:boxStrokeColor="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -55,12 +55,12 @@ android:background="#000"
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username"
+            android:id="@+id/useremail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableStart="@drawable/login"
             android:drawableLeft="@drawable/login"
-            android:inputType="phone"
+            android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColor="#fff" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +92,7 @@ android:background="#000"
             android:drawableLeft="@drawable/pass"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColor="#fff"/>
+            android:textColor="#fff" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -112,18 +112,31 @@ android:background="#000"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/etPasswordLayout" />
 
-    <TextView
+    <!-- <TextView
+         android:id="@+id/register"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="35dp"
+         android:text="Not a Member?"
+         android:textColor="@color/login_form_details"
+         android:textSize="16sp"
+         app:layout_constraintEnd_toStartOf="@id/guideline_right"
+         app:layout_constraintHorizontal_bias="0.493"
+         app:layout_constraintStart_toStartOf="@id/guideline_left"
+         app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="Not a Member?"
-        android:textColor="@color/login_form_details"
-        android:textSize="16sp"
+
+
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
+    />
 
 
     <TextView
@@ -138,8 +151,6 @@ android:background="#000"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/register" />
-
-
-
+ -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
