@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:background="#000"
     tools:context=".Login">
 
     <androidx.constraintlayout.widget.Guideline
@@ -62,7 +62,7 @@
             android:drawableLeft="@drawable/login"
             android:inputType="phone"
             android:padding="16dp"
-            android:textColor="@color/login_form_details_medium" />
+            android:textColor="#fff" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +92,7 @@
             android:drawableLeft="@drawable/pass"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColor="@color/login_form_details_medium"/>
+            android:textColor="#fff"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
