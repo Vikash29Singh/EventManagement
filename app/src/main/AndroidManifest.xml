@@ -14,7 +14,6 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
 
-        <activity android:name=".AdminDashboard"></activity>
         <activity android:name=".Dashboard" />
 
         <activity android:name=".Splash">
