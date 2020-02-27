@@ -39,12 +39,12 @@ public class Events extends Fragment {
         v = inflater.inflate(R.layout.events, container, false);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
+        recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Eventname");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event_name");
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
