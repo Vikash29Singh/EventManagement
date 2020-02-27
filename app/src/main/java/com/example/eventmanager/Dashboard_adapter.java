@@ -4,12 +4,15 @@ import android.content.Context;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,9 +30,12 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+       // public CookieHandler Picasso;
         TextView event_name, address, date, stime, center_name;
+        ImageView imageView;
         ProgressBar progressBar;
         LinearLayout ll1;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -38,9 +44,10 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
             address = (TextView) view.findViewById(R.id.address);
             date = (TextView) view.findViewById(R.id.time);
             stime = view.findViewById(R.id.stime);
+            imageView = view.findViewById(R.id.imageView);
+
             //center_name = view.findViewById(R.id.center_name);
             //progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-
             ll1 = view.findViewById(R.id.ll1);
             view.setOnClickListener(this);
 
@@ -64,11 +71,14 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         Dashboard_item_model model = modelist.get(position);
+
         holder.event_name.setText(model.getEvent_name()+"\n"+model.getCenter_name());
         //String var = model.getI_alarm_weight() + " KG";
+
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
         holder.stime.setText(model.getStime()+" Onwards");
+        Picasso.get().load(model.getImageView()).into(holder.imageView);
         //holder.center_name.setText(model.getCenter_name());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
     }

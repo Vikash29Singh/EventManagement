@@ -2,19 +2,21 @@ package com.example.eventmanager;
 
 public class Dashboard_item_model {
 
-        private String event_name, address, date, stime, center_name;
+        private String event_name, imageView,address, date, stime, center_name;
 
 
         public Dashboard_item_model() {
 
         }
 
-        public Dashboard_item_model(String event_name, String address, String date, String stime, String center_name) {
+        public Dashboard_item_model(String event_name, String imageView, String address, String date, String stime, String center_name) {
             this.event_name = event_name;
             this.address = address;
             this.date = date;
             this.stime = stime;
             this.center_name = center_name;
+            this.imageView = imageView;
+//            Picasso.get().load(imageView);
         }
 
     public String getEvent_name() {
@@ -50,5 +52,13 @@ public class Dashboard_item_model {
     }
     public void setCenter_name(String center_name) {
         this.center_name = center_name;
+    }
+
+    public String getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(String imageView) {
+        this.imageView = imageView;
     }
 }
