@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +38,7 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
             address = (TextView) view.findViewById(R.id.address);
             date = (TextView) view.findViewById(R.id.time);
             stime = view.findViewById(R.id.stime);
-            etime = view.findViewById(R.id.etime);
+            //etime = view.findViewById(R.id.etime);
             //progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
             ll1 = view.findViewById(R.id.ll1);
@@ -65,12 +64,12 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         Dashboard_item_model model = modelist.get(position);
-        holder.event_name.setText(model.getEvent_name());
+        holder.event_name.setText(model.getEvent_name()+"/n"+model.getCname());
         //String var = model.getI_alarm_weight() + " KG";
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
-        holder.stime.setText(model.getStime());
-        holder.etime.setText(model.getEtime());
+        holder.stime.setText(model.getStime()+" Onwards");
+        //holder.etime.setText(model.getCname());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
     }
 
@@ -79,9 +78,10 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         return modelist.size();
     }
 
+/*
     public void removeItem(int position) {
         modelist.remove(position);
         notifyItemRemoved(position);
-    }
+    }*/
 
 }
