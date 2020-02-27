@@ -48,7 +48,9 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
             //center_name = view.findViewById(R.id.center_name);
             //progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+
             ll1 = view.findViewById(R.id.ll1);
+
             view.setOnClickListener(this);
 
         }
@@ -60,14 +62,14 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
     }
 
     @NonNull
-    @java.lang.Override
+    @Override
     public MyViewHolder onCreateViewHolder(@NonNull android.view.ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_list_row, parent, false);
         return new MyViewHolder(view);
     }
 
-    @java.lang.Override
+    @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         Dashboard_item_model model = modelist.get(position);
