@@ -2,19 +2,19 @@ package com.example.eventmanager;
 
 public class Dashboard_item_model {
 
-        private String event_name, address, date, stime, cname;
+        private String event_name, address, date, stime, center_name;
 
 
         public Dashboard_item_model() {
 
         }
 
-        public Dashboard_item_model(String event_name, String address, String date, String stime, String cname) {
+        public Dashboard_item_model(String event_name, String address, String date, String stime, String center_name) {
             this.event_name = event_name;
             this.address = address;
             this.date = date;
             this.stime = stime;
-            this.cname = cname;
+            this.center_name = center_name;
         }
 
     public String getEvent_name() {
@@ -45,10 +45,10 @@ public class Dashboard_item_model {
         this.stime = stime;
     }
 
-    public String getCname() {
-        return cname;
+    public String getCenter_name() {
+        return center_name;
     }
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setCenter_name(String center_name) {
+        this.center_name = center_name;
     }
 }
