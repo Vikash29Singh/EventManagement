@@ -26,7 +26,7 @@
                 android:id="@+id/event_name"
                 android:textAlignment="textStart"
                 android:layout_height="wrap_content"
-                android:text="Gateways @Christ Deemed to be University 2019"
+                android:text=" Gateways \n Christ(Deemed to be University)"
                 android:elevation="100dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
