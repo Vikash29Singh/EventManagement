@@ -44,7 +44,7 @@ public class Events extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Eventname");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event_name");
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
