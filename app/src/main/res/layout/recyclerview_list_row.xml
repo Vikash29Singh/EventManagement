@@ -26,7 +26,7 @@
                 android:id="@+id/event_name"
                 android:textAlignment="textStart"
                 android:layout_height="wrap_content"
-                android:text=" Gateways \n Christ(Deemed to be University)"
+                android:text=" Gateways 2019"
                 android:elevation="100dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -84,7 +84,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/address"/>
+                            android:id="@+id/address"
+                            android:padding="10dp"
+                            android:text="Christ Deemed to be University, Bangalore, Karnataka 560029"/>
 
                     </LinearLayout>
 
@@ -119,10 +121,42 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/time"/>
+                            android:id="@+id/time"
+                            android:text="29 Jan 2019" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/stime"
+                            android:text="10:00 AM"
+                            android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="to"
+                                android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/etime"
+                                android:text="4:30 PM"/>
+
+                        </LinearLayout>
+
+</LinearLayout>
 
                     </LinearLayout>
 
