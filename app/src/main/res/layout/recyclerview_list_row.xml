@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/ll1"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll1">
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/cardview_light_background"
@@ -15,25 +15,23 @@
         card_view:cardUseCompatPadding="true">
 
 
-
         <RelativeLayout
+            android:id="@+id/rl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rl">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
                 android:id="@+id/event_name"
-                android:textAlignment="textStart"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Gateways 2019"
-                android:elevation="100dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:layout_marginTop="162dp"
                 android:layout_marginLeft="15dp"
-                />
+                android:layout_marginTop="162dp"
+                android:elevation="100dp"
+                android:text=" Gateways 2019"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -43,15 +41,27 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:tag="image_tag"
-                    android:layout_width="match_parent"
+                    android:layout_width="420dp"
                     android:layout_height="200dp"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:backgroundTint="@color/colorAccent"
                     android:src="@drawable/event"
-                    />
+                    android:tag="image_tag" />
+                <!-- <TextView
+                     android:layout_width="match_parent"
+                     android:id="@+id/event_name"
+                     android:textAlignment="textStart"
+                     android:layout_height="wrap_content"
+                     android:text=" Gateways 2019"
+                     android:elevation="100dp"
+                     android:textColor="@color/black"
+                     android:textStyle="bold"
+                     android:textSize="18dp"
+
+                     android:layout_marginLeft="15dp"
+                     />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,65 +70,64 @@
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            >
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_person_pin_circle_black_24dp"
-                            android:layout_marginRight="5dp"/>
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/ic_person_pin_circle_black_24dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:text="LOCATION"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:text="LOCATION"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="Christ Deemed to be University, Bangalore, Karnataka 560029"/>
+                            android:text="Christ Deemed to be University, Bangalore, Karnataka 560029" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
-                        android:background="@color/border"/>
+                        android:background="@color/border" />
 
                     <LinearLayout
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            >
+                            android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_access_time_black_24dp"
-                            android:layout_marginRight="5dp"/>
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/ic_access_time_black_24dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:text="DATE"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:text="DATE"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -127,40 +136,42 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="10dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/time"
-                            android:text="29 Jan 2019" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/stime"
-                            android:text="10:00 AM"
-                            android:layout_marginRight="5dp"/>
-
-       
-<!--
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="to"
-                                android:layout_marginRight="5dp"/>
 
                             <TextView
+                                android:id="@+id/time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="29 Jan 2019" />
 
-                                android:id="@+id/center_name"
-                                android:text="4:30 PM"/>-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/stime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="5dp"
+                                    android:text="10:00 AM" />
+
+
+                                <!--
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="to"
+                                                                android:layout_marginRight="5dp"/>
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+
+                                                                android:id="@+id/center_name"
+                                                                android:text="4:30 PM"/>-->
+
+                            </LinearLayout>
 
                         </LinearLayout>
-
-</LinearLayout>
 
                     </LinearLayout>
 
@@ -169,34 +180,34 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/border"/>
+                    android:background="@color/border" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:padding="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:padding="15dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ARE YOU ATTENDING?"
-                    android:textStyle="bold"
-                    android:layout_marginRight="40dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:text="ARE YOU ATTENDING?"
+                        android:textStyle="bold" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="YES"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/button"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/button"
+                        android:text="YES" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MAYBE"
-                    android:background="@color/button"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/button"
+                        android:text="MAYBE" />
 
-            </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

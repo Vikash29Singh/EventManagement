@@ -67,12 +67,12 @@ public class Session {
      * Create login session
      * */
 
-    public void createLoginSession(String usename){ //setuserid
+    public void createLoginSession(String useremail){ //setuserid
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing name in pref
-        editor.putString(KEY_NAME, usename);
+        editor.putString(KEY_NAME, useremail);
 
 
         // commit changes
@@ -133,15 +133,18 @@ public class Session {
         editor.commit();
 
         // After logout redirect user to Loing Activity
-        Intent i = new Intent(_context, Login.class);
+       final Intent i = new Intent(_context, Login.class);
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+
         // Staring Login Activity
         _context.startActivity(i);
+
+
     }
 
 

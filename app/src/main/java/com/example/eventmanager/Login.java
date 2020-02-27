@@ -5,8 +5,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     EditText password, useremail;
     Button btn_login;
-    // ProgressDialog progressBar;
+    ProgressDialog progressBar;
     int count = 0, count1 = 3;
 
     AlertDialog.Builder builder;
@@ -29,20 +32,27 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private ProgressDialog mProgress;
-
+    Session session;
+    private BroadcastReceiver MyReceiver = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //check connectivity
+        MyReceiver = new MyReceiver();
 
-
+        //firebase connectivity
         firebaseAuth = FirebaseAuth.getInstance();
 
         useremail = (EditText) findViewById(R.id.useremail);
         password = (EditText) findViewById(R.id.Password);
 
         btn_login = (Button) findViewById(R.id.btn_login);
+
+        // Session Manager
+        session = new Session(getApplicationContext());
+
 
         // final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
 
@@ -59,23 +69,26 @@ public class Login extends AppCompatActivity {
                 }
             }
         };
+        //check status of internet
+        broadcastIntent();
+
+        //progress bar
+        mProgress = new ProgressDialog(Login.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        mProgress.setIndeterminate(true);
+        //mProgress.setTitle("Processing...");
+        mProgress.setMessage("Authenticating");
+        mProgress.setCancelable(false);
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userEmail = useremail.getText().toString();
+                mProgress.show();
+                final String userEmail = useremail.getText().toString();
                 String userPaswd = password.getText().toString();
                 //_btn_login.setEnabled(false);
 
 
-
-              /*  mProgress = new ProgressDialog(Login.this,
-                        R.style.AppTheme);
-                mProgress.setIndeterminate(true);
-                //mProgress.setTitle("Processing...");
-                mProgress.setMessage("Authenticating");
-                //mProgress.setCancelable(false);
-                mProgress.show();*/
                 if (userEmail.isEmpty()) {
                     useremail.setError("Provide your Email first!");
                     useremail.requestFocus();
@@ -89,6 +102,7 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             if (!task.isSuccessful()) {
+                                mProgress.dismiss();
                                 //Toast.makeText(getApplicationContext(), "Not sucessfull", Toast.LENGTH_SHORT).show();
 
                                 builder = new AlertDialog.Builder(Login.this);
@@ -99,7 +113,11 @@ public class Login extends AppCompatActivity {
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                startActivity(new Intent(getApplicationContext(), Login.class));
+                                                Intent intent = new Intent(getApplicationContext(), Login.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
+                                                finish();
+                                                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                               /* finish();
 
 
@@ -113,16 +131,22 @@ public class Login extends AppCompatActivity {
 
                                             }
                                         });
-
+                                //authentication();
                                 AlertDialog alertDialog1 = builder.create();
                                 alertDialog1.show();
 
                                 Toast.makeText(getApplicationContext(), "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
-
-
-
+                                mProgress.dismiss();
+                                //authentication();
                                 FirebaseAuth.getInstance().signOut();
+
+                                String user_email = useremail.getText().toString();
+                                // Creating user login session
+                                // For testing i am stroing name, email as follow
+                                // Use user real data
+                                session.createLoginSession(user_email);
+
                                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
                                 finish();
                                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -137,12 +161,23 @@ public class Login extends AppCompatActivity {
 
     }
 
+    public void broadcastIntent() {
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(MyReceiver);
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
+
+
 }
 
 

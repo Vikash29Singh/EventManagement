@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Events extends Fragment {
 
@@ -38,13 +39,14 @@ public class Events extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.events, container, false);
 
+
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("event_name");
+        databaseReference = FirebaseDatabase.getInstance().getReference("date");
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
