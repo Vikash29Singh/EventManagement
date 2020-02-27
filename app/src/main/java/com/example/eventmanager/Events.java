@@ -43,7 +43,7 @@ public class Events extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("ITEMS");
+        databaseReference = FirebaseDatabase.getInstance().getReference("eventmanagerment");
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {

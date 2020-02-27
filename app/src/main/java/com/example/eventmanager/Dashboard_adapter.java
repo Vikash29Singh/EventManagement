@@ -75,9 +75,11 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         return modelist.size();
     }
 
+/*
     public void removeItem(int position) {
         modelist.remove(position);
         notifyItemRemoved(position);
     }
+*/
 
 }

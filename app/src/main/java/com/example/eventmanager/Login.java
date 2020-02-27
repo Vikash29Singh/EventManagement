@@ -69,13 +69,13 @@ public class Login extends AppCompatActivity {
 
 
 
-                mProgress = new ProgressDialog(Login.this,
-                        R.style.AppTheme_Dark_Dialog);
+              /*  mProgress = new ProgressDialog(Login.this,
+                        R.style.AppTheme);
                 mProgress.setIndeterminate(true);
                 //mProgress.setTitle("Processing...");
                 mProgress.setMessage("Authenticating");
                 //mProgress.setCancelable(false);
-                mProgress.show();
+                mProgress.show();*/
                 if (userEmail.isEmpty()) {
                     useremail.setError("Provide your Email first!");
                     useremail.requestFocus();
