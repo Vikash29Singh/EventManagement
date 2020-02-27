@@ -28,7 +28,7 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView event_name, address, time;
+        TextView event_name, address, date, stime, etime;
         ProgressBar progressBar;
         LinearLayout ll1;
 
@@ -37,7 +37,9 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
             event_name = (TextView) view.findViewById(R.id.event_name);
             address = (TextView) view.findViewById(R.id.address);
-            time = (TextView) view.findViewById(R.id.time);
+            date = (TextView) view.findViewById(R.id.time);
+            stime = view.findViewById(R.id.stime);
+            etime = view.findViewById(R.id.etime);
             //progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
             ll1 = view.findViewById(R.id.ll1);
@@ -66,7 +68,9 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         holder.event_name.setText(model.getEvent_name());
         //String var = model.getI_alarm_weight() + " KG";
         holder.address.setText(model.getAddress());
-        holder.time.setText(model.getTime());
+        holder.date.setText(model.getDate());
+        holder.stime.setText(model.getStime());
+        holder.etime.setText(model.getEtime());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
     }
 
