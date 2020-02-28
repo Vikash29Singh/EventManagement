@@ -13,9 +13,6 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-
-
-
         String status = NetworkUtil.getConnectivityStatusString(context);
         if (status.isEmpty()) {
 

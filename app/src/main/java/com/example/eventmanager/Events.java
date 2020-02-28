@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Events extends Fragment {
+public class Events extends Fragment implements OnBackPressed {
 
     View v;
 
@@ -97,5 +97,8 @@ public class Events extends Fragment {
         });
 
         return v;
+
     }
+
+    public void onBackPressed() {}
 }

@@ -14,15 +14,20 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
 
     Toolbar toolbar;
-    Session session;
+   // Session session;
     private BroadcastReceiver MyReceiver = null;
 
+    FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +36,11 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.activity_dashboard);
 
+        //firebase connectivity
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // Session class instance
-        session = new Session(getApplicationContext());
+        //session = new Session(getApplicationContext());
 
 
         /**
@@ -41,7 +48,7 @@ public class Dashboard extends AppCompatActivity {
          * This will redirect user to LoginActivity is he is not
          * logged in
          * */
-        session.checkLogin();
+        //session.checkLogin();
 
        /* // get user data from session
         HashMap<String, String> user = session.getUserDetails();
@@ -72,6 +79,27 @@ public class Dashboard extends AppCompatActivity {
                     new Events()).commit();
         }
 
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
+                    Intent I = new Intent(getApplicationContext(), Login.class);
+                    startActivity(I);
+                } else {
+                   /* FirebaseAuth.getInstance().signOut();
+                    final Intent intent = new Intent(getApplicationContext(),Login.class);
+                    intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);*/
+                    //alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
+                    Toast.makeText(getApplicationContext(), "Welcome Back", Toast.LENGTH_SHORT).show();
+                    //selectedFragment = new Train_book();
+                    //Toast.makeText(getApplicationContext(), "Login to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -86,11 +114,15 @@ public class Dashboard extends AppCompatActivity {
                             selectedFragment = new Events();
                             break;
                         case R.id.profile:
-                            session.logoutUser();
+                           // session.logoutUser();
 
-                            //alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
-                            Toast.makeText(Dashboard.this, "Logged out", Toast.LENGTH_SHORT).show();
-                            //selectedFragment = new Train_book();
+                            FirebaseAuth.getInstance().signOut();
+                            final Intent intent = new Intent(getApplicationContext(),Login.class);
+                            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+
+
                             break;
                         /*case R.id.bus:
                             selectedFragment = new Bus_book();
@@ -108,4 +140,34 @@ public class Dashboard extends AppCompatActivity {
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(MyReceiver);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+   /* @Override
+    public void onBackPressed() {
+        Dashboard.super.onBackPressed();
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        tellFragments();
+        super.onBackPressed();
+    }
+
+    private void tellFragments(){
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for(Fragment f : fragments){
+            if(f != null && f instanceof Events)
+                ((Events)f).onBackPressed();
+        }
+    }
 }

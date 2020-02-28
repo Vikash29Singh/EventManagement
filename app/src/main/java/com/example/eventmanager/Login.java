@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private ProgressDialog mProgress;
-    Session session;
+    //Session session;
     private BroadcastReceiver MyReceiver = null;
 
     @Override
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
         btn_login = (Button) findViewById(R.id.btn_login);
 
         // Session Manager
-        session = new Session(getApplicationContext());
+        //session = new Session(getApplicationContext());
 
 
         // final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
@@ -139,17 +139,18 @@ public class Login extends AppCompatActivity {
                             } else {
                                 mProgress.dismiss();
                                 //authentication();
-                                FirebaseAuth.getInstance().signOut();
+                                // FirebaseAuth.getInstance().signOut();
 
                                 String user_email = useremail.getText().toString();
                                 // Creating user login session
                                 // For testing i am stroing name, email as follow
                                 // Use user real data
-                                session.createLoginSession(user_email);
-
-                                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                                //session.createLoginSession(user_email);
+                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
                                 finish();
-                                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                                overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
                             }
                         }
                     });
@@ -169,6 +170,7 @@ public class Login extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(MyReceiver);
+
     }
 
     @Override
@@ -177,7 +179,14 @@ public class Login extends AppCompatActivity {
         firebaseAuth.addAuthStateListener(authStateListener);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
 
+    }
 }
 
 
