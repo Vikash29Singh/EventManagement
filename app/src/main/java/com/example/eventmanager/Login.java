@@ -104,7 +104,8 @@ public class Login extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 mProgress.dismiss();
                                 //Toast.makeText(getApplicationContext(), "Not sucessfull", Toast.LENGTH_SHORT).show();
-
+                                //check status of internet
+                                broadcastIntent();
                                 builder = new AlertDialog.Builder(Login.this);
                                 builder.setTitle("Alert")
                                         .setIcon(R.drawable.alerticon)
@@ -113,11 +114,13 @@ public class Login extends AppCompatActivity {
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
+                                                password.setText("");
+                                              /*  useremail.getText().toString();
                                                 Intent intent = new Intent(getApplicationContext(), Login.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
                                                 finish();
-                                                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                                                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);*/
                               /* finish();
 
 
@@ -137,6 +140,7 @@ public class Login extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(), "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
+
                                 mProgress.dismiss();
                                 //authentication();
                                 // FirebaseAuth.getInstance().signOut();
