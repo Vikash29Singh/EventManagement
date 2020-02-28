@@ -76,7 +76,7 @@ public class Dashboard extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Events()).commit();
+                    new Events()).addToBackStack( "tag" ).commit();
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -114,14 +114,15 @@ public class Dashboard extends AppCompatActivity {
                             selectedFragment = new Events();
                             break;
                         case R.id.profile:
+                            selectedFragment = new UserProfile();
                            // session.logoutUser();
 
-                            FirebaseAuth.getInstance().signOut();
+                           /* FirebaseAuth.getInstance().signOut();
                             final Intent intent = new Intent(getApplicationContext(),Login.class);
                             intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
-
+*/
 
                             break;
                         /*case R.id.bus:
@@ -131,7 +132,8 @@ public class Dashboard extends AppCompatActivity {
                             selectedFragment = new Car_book();
                             break;*/
                     }
-
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            selectedFragment).commit();
                     return true;
                 }
             };

@@ -195,6 +195,7 @@
                         android:textStyle="bold" />
 
                     <Button
+                        android:id="@+id/yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -202,6 +203,7 @@
                         android:text="YES" />
 
                     <Button
+                        android:id="@+id/maybe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/button"
