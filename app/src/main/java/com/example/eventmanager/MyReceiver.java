@@ -17,8 +17,12 @@ public class MyReceiver extends BroadcastReceiver {
         if (status.isEmpty()) {
 
             status = "No Internet Connection";
+            
+
 
         }
+        else
+
 
         Toast.makeText(context, status, Toast.LENGTH_LONG).show();
 
