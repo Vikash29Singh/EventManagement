@@ -1,6 +1,11 @@
 package com.example.eventmanager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Canvas;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Events extends Fragment implements OnBackPressed {
+public class Events extends Fragment implements Dashboard_adapter.ClickAdapterListener {
 
     View v;
 
@@ -31,6 +36,8 @@ public class Events extends Fragment implements OnBackPressed {
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<Dashboard_item_model> modelist;
     private Dashboard_adapter dashboard_adapter;
+    private Context ctx;
+    private BroadcastReceiver MyReceiver = null;
 
     private DatabaseReference databaseReference;
 
@@ -61,7 +68,7 @@ public class Events extends Fragment implements OnBackPressed {
                     modelist.add(modl);
                 }
 
-                dashboard_adapter = new Dashboard_adapter(getActivity(), modelist);
+                dashboard_adapter = new Dashboard_adapter(getActivity(), modelist, Events.this);
                 recyclerView.setAdapter(dashboard_adapter);
 
                 /*ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT , Dashboard_Frag1.this);
@@ -100,5 +107,14 @@ public class Events extends Fragment implements OnBackPressed {
 
     }
 
+
+
     public void onBackPressed() {}
+
+    @Override
+    public void onRowClicked(int position, View v) {
+        Intent intent = new Intent(getActivity(), Bookactivity.class);
+        startActivity(intent);
+        //getActivity().finish();
+    }
 }

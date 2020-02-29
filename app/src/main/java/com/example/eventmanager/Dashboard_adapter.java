@@ -20,15 +20,13 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
     private ArrayList<Dashboard_item_model> modelist;
     private Context ctx;
+    private ClickAdapterListener listener;
     SparseBooleanArray selectedItem;
     public static int currentSelectedIndex;
 
-    public Dashboard_adapter(Context ctx, ArrayList<Dashboard_item_model> modelist) {
-        this.ctx = ctx;
-        this.modelist = modelist;
-    }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
        // public CookieHandler Picasso;
         TextView event_name, address, date, stime, center_name;
@@ -51,14 +49,20 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
             ll1 = view.findViewById(R.id.ll1);
 
-            view.setOnClickListener(this);
+            //view.setOnClickListener(this);
 
         }
 
-        @Override
+       /* @Override
         public void onClick(View v) {
-        }
+        }*/
 
+    }
+
+    public Dashboard_adapter(Context ctx, ArrayList<Dashboard_item_model> modelist, ClickAdapterListener listener) {
+        this.ctx = ctx;
+        this.modelist = modelist;
+        this.listener = listener;
     }
 
     @NonNull
@@ -83,6 +87,9 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         Picasso.get().load(model.getImageView()).into(holder.imageView);
         //holder.center_name.setText(model.getCenter_name());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
+
+        applyClickEvents(holder, position);
+
     }
 
     @java.lang.Override
@@ -96,6 +103,20 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         notifyItemRemoved(position);
 
     }*/
+
+    private void applyClickEvents(MyViewHolder holder, final int position) {
+        holder.ll1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onRowClicked(position, view);
+            }
+        });
+    }
+
+    public interface ClickAdapterListener {
+
+        void onRowClicked(int position, View v);
+    }
 
     }
 
