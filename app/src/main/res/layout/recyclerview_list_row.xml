@@ -20,18 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/event_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="162dp"
-                android:elevation="100dp"
-                android:text=" Gateways 2019"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
 
 
             <LinearLayout
@@ -46,21 +35,35 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:backgroundTint="@color/colorAccent"
-                    android:src="@drawable/event"
-                    android:tag="image_tag" />
-                <!-- <TextView
-                     android:layout_width="match_parent"
-                     android:id="@+id/event_name"
-                     android:textAlignment="textStart"
-                     android:layout_height="wrap_content"
-                     android:text=" Gateways 2019"
-                     android:elevation="100dp"
-                     android:textColor="@color/black"
-                     android:textStyle="bold"
-                     android:textSize="18dp"
+                    android:src="@drawable/event"/>
+                 <!--   android:tag="image_tag"-->
+                <TextView
+                    android:id="@+id/event_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
 
-                     android:layout_marginLeft="15dp"
+                    android:elevation="100dp"
+                    android:text=" Event Name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/center_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+
+                    android:elevation="100dp"
+                    android:text=" Center"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
                      />-->
 
                 <LinearLayout

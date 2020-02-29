@@ -47,6 +47,7 @@ public class Events extends Fragment implements OnBackPressed {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        //final String single_view = getRef(position).getKey();
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
