@@ -8,9 +8,12 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+
+import android.widget.ImageView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +23,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
-    TextView tv, tv1;
+
+    TextView center_name,event_name,stime,date;
+
+//    TextView tv, tv1;
+
     DatabaseReference databaseReference;
+    ImageView imageView;
+    String center_name1,event_name1,stime1,date1;
 
     Toolbar toolbar;
 
@@ -34,31 +44,41 @@ public class Bookactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
 
-        toolbar = findViewById(R.id.toolbar);
+        //toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
+       /* setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+*/
+        event_name = findViewById(R.id.event_name);
+        center_name = findViewById(R.id.center_name);
+        stime = findViewById(R.id.stime);
+        date = findViewById(R.id.date);
+        imageView = findViewById(R.id.imageView);
 
-        tv = findViewById(R.id.event_name);
-        String id = getIntent().getExtras().getString("event_name");
-        tv.setText(id);
+        event_name1 = getIntent().getExtras().getString("event_name");
+        event_name.setText(event_name1);
+        center_name1 = getIntent().getExtras().getString("center_name");
+        center_name.setText(center_name1);
+        date1 = getIntent().getExtras().getString("date");
+        date.setText(date1);
+        stime1 = getIntent().getExtras().getString("stime");
+        stime.setText(stime1);
+        /*String center_name1 = getIntent().getExtras().getString("center_name");
+        String img =  getIntent().getExtras().getString("imageView");
+        Picasso.get().load(img).into(imageView);*/
+
+        //center_name.setText(center_name1);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        /*Query query= databaseReference.child(event_name)*/
 
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("date");
+        
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               // String centername = dataSnapshot.child("center_name").getValue().toString();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
       /* // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
        // String current_uid = user.getUid(); // user.getUid() will return null if you are not log in
@@ -98,5 +118,30 @@ public class Bookactivity extends AppCompatActivity {
     }
 */
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseReference.orderByChild("event_name").equalTo(event_name1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //image = dataSnapshot.child("imageView").getValue().toString();
+                // Picasso.get().load(image).into(imageView);
+                //Picasso.get().load(model.getImageView()).into(holder.imageView);
+               /*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
+               center_name.setText(center_name1);
+              */  /* image = dataSnapshot.getValue(String.class);
+                Picasso.get().load(image).into(imageView);*/
+                //Dashboard_item_model model = dataSnapshot.getValue(Dashboard_item_model.class);
+                /*String center_name1 = dataSnapshot.getValue(String.class);
+                center_name.setText(center_name1);*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

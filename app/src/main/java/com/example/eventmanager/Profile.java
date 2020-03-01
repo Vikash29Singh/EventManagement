@@ -23,11 +23,11 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        toolbar = findViewById(R.id.toolbar);
+        /*toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -40,9 +40,13 @@ public class Profile extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent = new Intent(getActivity(), Events.class);
-                startActivity(intent);*/
-                //Fragment fragment = new tasks();
+                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+
+            }
+        });
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
@@ -57,5 +61,11 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-  
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(),Dashboard.class));
+        super.onBackPressed();
+    }
+
 }

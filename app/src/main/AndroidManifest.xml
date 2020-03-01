@@ -17,8 +17,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".Bookactivity" />
         <activity
-            android:name=".Login"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:name=".Login" />
         <activity android:name=".Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
