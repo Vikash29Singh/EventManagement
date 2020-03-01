@@ -56,6 +56,8 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
         databaseReference = FirebaseDatabase.getInstance().getReference("date");
         //final String single_view = getRef(position).getKey();
 
+
+
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,6 +117,8 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     @Override
     public void onRowClicked(int position, View v) {
         Intent intent = new Intent(getActivity(), Bookactivity.class);
+        //intent.putExtra("Eventname",modelist.get(position).getEvent_name());
+        intent.putExtra("event_name", modelist.get(position).getEvent_name());
         startActivity(intent);
         //getActivity().finish();
     }
