@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,11 @@ public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
 
-    TextView center_name,event_name,stime,date;
+    TextView center_name,event_name,stime,date,tac;
+    private static ImageView more;
+    /*private int current_image;
+    int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
+    *///LinearLayout tac;
 
 //    TextView tv, tv1;
 
@@ -54,7 +59,31 @@ public class Bookactivity extends AppCompatActivity {
         center_name = findViewById(R.id.center_name);
         stime = findViewById(R.id.stime);
         date = findViewById(R.id.date);
+        more = findViewById(R.id.more);
+        tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
+        tac.setVisibility(View.INVISIBLE);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int status = tac.getVisibility();
+                if(status == View.VISIBLE) {
+                    tac.setVisibility(View.INVISIBLE);
+                    more.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+                   /* current_image++;
+                    current_image=current_image & images.length;
+                    more.setImageResource(images[current_image]);*/
+                }
+                else{
+                    tac.setVisibility(View.VISIBLE);
+                    more.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                   /* current_image--;
+                    current_image=current_image & images.length;
+                    more.setImageResource(images[current_image]);*/
+                }
+            }
+        });
 
         event_name1 = getIntent().getExtras().getString("event_name");
         event_name.setText(event_name1);
