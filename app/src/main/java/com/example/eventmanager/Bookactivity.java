@@ -30,7 +30,7 @@ public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
 
-    TextView center_name,event_name,stime,date,tac;
+    TextView center_name, event_name, stime, date, tac;
     private static ImageView more;
     /*private int current_image;
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
@@ -39,8 +39,8 @@ public class Bookactivity extends AppCompatActivity {
 //    TextView tv, tv1;
 
     DatabaseReference databaseReference;
-    ImageView imageView;
-    String center_name1,event_name1,stime1,date1;
+    ImageView imageView, image;
+    String center_name1, event_name1, stime1, date1, image_view;
 
     Toolbar toolbar;
 
@@ -68,14 +68,13 @@ public class Bookactivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 int status = tac.getVisibility();
-                if(status == View.VISIBLE) {
+                if (status == View.VISIBLE) {
                     tac.setVisibility(View.INVISIBLE);
                     more.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                    /* current_image++;
                     current_image=current_image & images.length;
                     more.setImageResource(images[current_image]);*/
-                }
-                else{
+                } else {
                     tac.setVisibility(View.VISIBLE);
                     more.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
                    /* current_image--;
@@ -99,10 +98,33 @@ public class Bookactivity extends AppCompatActivity {
 
         //center_name.setText(center_name1);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event");
         /*Query query= databaseReference.child(event_name)*/
 
 
+        databaseReference.child(date1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                image_view = dataSnapshot.child("imageView").getValue(String.class);
+                Picasso.get().load(image_view).into(imageView);
+                //Picasso.get().load(model.getImageView()).into(holder.imageView);
+               /*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
+               center_name.setText(center_name1);
+              */  /* image = dataSnapshot.getValue(String.class);
+                Picasso.get().load(image).into(imageView);*/
+                //Dashboard_item_model model = dataSnapshot.getValue(Dashboard_item_model.class);
+                /*String center_name1 = dataSnapshot.getValue(String.class);
+                center_name.setText(center_name1);*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
         
 
@@ -133,7 +155,7 @@ public class Bookactivity extends AppCompatActivity {
 
         broadcastIntent();
 */
-    }
+
 
 
     /*public void broadcastIntent() {
@@ -146,7 +168,7 @@ public class Bookactivity extends AppCompatActivity {
         unregisterReceiver(MyReceiver);
     }
 */
-
+/*
 
     @Override
     protected void onStart() {
@@ -157,13 +179,13 @@ public class Bookactivity extends AppCompatActivity {
                 //image = dataSnapshot.child("imageView").getValue().toString();
                 // Picasso.get().load(image).into(imageView);
                 //Picasso.get().load(model.getImageView()).into(holder.imageView);
-               /*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
+               *//*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
                center_name.setText(center_name1);
-              */  /* image = dataSnapshot.getValue(String.class);
-                Picasso.get().load(image).into(imageView);*/
+              *//*  *//* image = dataSnapshot.getValue(String.class);
+                Picasso.get().load(image).into(imageView);*//*
                 //Dashboard_item_model model = dataSnapshot.getValue(Dashboard_item_model.class);
-                /*String center_name1 = dataSnapshot.getValue(String.class);
-                center_name.setText(center_name1);*/
+                *//*String center_name1 = dataSnapshot.getValue(String.class);
+                center_name.setText(center_name1);*//*
             }
 
             @Override
@@ -171,6 +193,6 @@ public class Bookactivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 
 }

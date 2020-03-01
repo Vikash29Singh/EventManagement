@@ -42,6 +42,8 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     private BroadcastReceiver MyReceiver = null;
     private ProgressBar progressBar;
     private DatabaseReference databaseReference;
+    //private FirebaseMethods firebaseMethods;
+    private int imagecount = 0;
 
     @Nullable
     @Override
@@ -55,7 +57,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event");
         //final String single_view = getRef(position).getKey();
 
 
