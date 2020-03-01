@@ -29,13 +29,13 @@ public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
 
-    TextView tv, center_name;
+    TextView center_name,event_name,stime,date;
 
-    TextView tv, tv1;
+//    TextView tv, tv1;
 
     DatabaseReference databaseReference;
     ImageView imageView;
-    String event_name, image;
+    String center_name1,event_name1,stime1,date1;
 
     Toolbar toolbar;
 
@@ -44,22 +44,30 @@ public class Bookactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
 
-        toolbar = findViewById(R.id.toolbar);
+        //toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
+       /* setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        tv = findViewById(R.id.event_name);
+*/
+        event_name = findViewById(R.id.event_name);
         center_name = findViewById(R.id.center_name);
-
-
+        stime = findViewById(R.id.stime);
+        date = findViewById(R.id.date);
         imageView = findViewById(R.id.imageView);
-        event_name = getIntent().getExtras().getString("event_name");
+
+        event_name1 = getIntent().getExtras().getString("event_name");
+        event_name.setText(event_name1);
+        center_name1 = getIntent().getExtras().getString("center_name");
+        center_name.setText(center_name1);
+        date1 = getIntent().getExtras().getString("date");
+        date.setText(date1);
+        stime1 = getIntent().getExtras().getString("stime");
+        stime.setText(stime1);
         /*String center_name1 = getIntent().getExtras().getString("center_name");
         String img =  getIntent().getExtras().getString("imageView");
         Picasso.get().load(img).into(imageView);*/
-        //tv.setText(event_name);
+
         //center_name.setText(center_name1);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("date");
@@ -114,7 +122,7 @@ public class Bookactivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        databaseReference.orderByChild("event_name").equalTo(event_name).addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("event_name").equalTo(event_name1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //image = dataSnapshot.child("imageView").getValue().toString();
@@ -125,8 +133,8 @@ public class Bookactivity extends AppCompatActivity {
               */  /* image = dataSnapshot.getValue(String.class);
                 Picasso.get().load(image).into(imageView);*/
                 //Dashboard_item_model model = dataSnapshot.getValue(Dashboard_item_model.class);
-                String center_name1 = dataSnapshot.child("center_name").getValue(String.class);
-                center_name.setText(center_name1);
+                /*String center_name1 = dataSnapshot.getValue(String.class);
+                center_name.setText(center_name1);*/
             }
 
             @Override
