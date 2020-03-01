@@ -114,7 +114,9 @@ public class Dashboard extends AppCompatActivity {
                             selectedFragment = new Events();
                             break;
                         case R.id.profile:
-                            selectedFragment = new UserProfile();
+                            Intent intent = new Intent(Dashboard.this, Profile.class);
+                            startActivity(intent);
+                            finish();
                            // session.logoutUser();
 
                            /* FirebaseAuth.getInstance().signOut();
