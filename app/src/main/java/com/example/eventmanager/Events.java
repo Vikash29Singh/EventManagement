@@ -4,12 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,7 +40,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     private Dashboard_adapter dashboard_adapter;
     private Context ctx;
     private BroadcastReceiver MyReceiver = null;
-
+    private ProgressBar progressBar;
     private DatabaseReference databaseReference;
 
     @Nullable
@@ -46,7 +48,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.events, container, false);
 
-
+        progressBar = v.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -55,7 +57,6 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
 
         databaseReference = FirebaseDatabase.getInstance().getReference("date");
         //final String single_view = getRef(position).getKey();
-
 
 
         modelist = new ArrayList<>();
@@ -73,7 +74,11 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
 
                 dashboard_adapter = new Dashboard_adapter(getActivity(), modelist, Events.this);
                 recyclerView.setAdapter(dashboard_adapter);
-
+                progressBar.isIndeterminate();
+                progressBar.setVisibility(View.INVISIBLE);
+               /* Asyncprogress T = new Asyncprogress(getContext());
+                T.execute();   // this will call do in background
+*/
                 /*ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT , Dashboard_Frag1.this);
                 new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
@@ -103,6 +108,9 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), "Error....!!", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+                /*Asyncprogress T = new Asyncprogress(getContext());
+                T.execute();   // this will call do in backgroun*/
             }
         });
 
@@ -111,14 +119,22 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     }
 
 
-
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     @Override
     public void onRowClicked(int position, View v) {
         Intent intent = new Intent(getActivity(), Bookactivity.class);
         //intent.putExtra("Eventname",modelist.get(position).getEvent_name());
         intent.putExtra("event_name", modelist.get(position).getEvent_name());
+        intent.putExtra("center_name", modelist.get(position).getCenter_name());
+        intent.putExtra("date", modelist.get(position).getDate());
+        intent.putExtra("imageView", modelist.get(position).getImageView());
+        intent.putExtra("stime", modelist.get(position).getStime());
+        /*imageView.buildDrawingCache();
+        Bitmap bitmap = imageView.getDrawingCache();
+        intent.putExtra("BitmapImage", bitmap);
+*/
         startActivity(intent);
         //getActivity().finish();
     }
