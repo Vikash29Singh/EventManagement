@@ -7,25 +7,23 @@
     android:orientation="vertical"
     tools:context=".Bookactivity">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
-<!--    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="200dp"
-        />-->
-
-
+    <!--    <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="200dp"
+            />-->
 
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@drawable/event"
         android:scaleType="fitXY"
-        android:id="@+id/imageView"/>
+        android:src="@drawable/event" />
 
 
     <LinearLayout
@@ -33,186 +31,198 @@
         android:layout_height="match_parent"
         android:layout_marginTop="210dp"
         android:background="@drawable/booking_style"
-        android:padding="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <TextView
 
-            android:layout_marginTop="20dp"
+            android:id="@+id/event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Gateways 2019"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="25sp"
-            android:id="@+id/event_name"/>
+            android:textStyle="bold" />
+
         <TextView
-            android:layout_marginTop="10dp"
+            android:id="@+id/center_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Center Name"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="25sp"
-            android:id="@+id/center_name"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12 January 2020"
-            android:drawableStart="@drawable/ic_access_time_black_24dp"
-            android:drawableTint="@color/grey"
-            android:textSize="15sp"
-            android:textColor="@color/grey"
-            android:drawablePadding="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/date"/>
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="20dp"
-            android:background="@color/grey"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10:30 AM"
-                android:textSize="15sp"
-                android:textColor="@color/grey"
                 android:layout_marginRight="5dp"
-                android:id="@+id/stime"/>
+                android:drawableStart="@drawable/ic_access_time_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/grey"
+                android:text="12 January 2020"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/grey" />
+
+            <TextView
+                android:id="@+id/stime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="10:30 AM"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
 
-
-
-
         <TextView
+            android:id="@+id/direction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="longitude, latitude"
-            android:id="@+id/direction"
             android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="20dp"
-            android:background="@color/grey"/>
+            android:background="@color/grey" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbarSize="0dp"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:scrollbarSize="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-        <TextView
+                <TextView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Synopsis"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Synopsis"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/grey"
-            android:text="A synopsis conveys the narrative arc, an explanation of the problem or plot, the characters, and how the book or novel ends. It ensures character actions and motivations are realistic and make sense. It summarizes what happens and who changes from beginning to end of the story."/>
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="A synopsis conveys the narrative arc, an explanation of the problem or plot, the characters, and how the book or novel ends. It ensures character actions and motivations are realistic and make sense. It summarizes what happens and who changes from beginning to end of the story."
+                    android:textColor="@color/grey" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/grey"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grey" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Terms and Conditions"
-            android:drawableEnd="@drawable/ic_keyboard_arrow_down_black_24dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <TextView
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
-            android:id="@+id/tac"
-            android:textColor="@color/grey"
-            android:layout_marginBottom="60dp"
-            android:text="The following are terms of a legal agreement (“Agreement”) between you and Events 4 Sure. By accessing, browsing and/or using this web website (“Website”) you acknowledge that you have read, understood and agree to be bound by these terms and to comply with all applicable laws and regulations. If you do not agree to these terms, do not use this Website. This Website may contain other proprietary notices and copyright information, the terms of which must be observed and followed. Information on this Website may contain technical inaccuracies or typographical errors. Please read this Agreement carefully and be aware that Events 4 Sure may, in its sole discretion and without notice, change these terms at any time by updating this posting.
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terms and Conditions"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="140dp"
+                        android:src="@drawable/ic_keyboard_arrow_up_black_24dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    </LinearLayout>
 
-Our service related terms and conditions are also mentioned below. We request you to read them carefully before availing any of our services. Should you avail any of our services, you confirm to be bound by these terms and conditions knowingly or unknowingly.
+                    <TextView
+                        android:id="@+id/tac"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="60dp"
+                        android:text="The following are terms of a legal agreement (“Agreement”) between you and Events 4 Sure. By accessing, browsing and/or using this web website (“Website”) you acknowledge that you have read, understood and agree to be bound by these terms and to comply with all applicable laws and regulations. If you do not agree to these terms, do not use this Website. This Website may contain other proprietary notices and copyright information, the terms of which must be observed and followed. Information on this Website may contain technical inaccuracies or typographical errors. Please read this Agreement carefully and be aware that Events 4 Sure may, in its sole discretion and without notice, change these terms at any time by updating this posting.
 
-Any person intending to avail any of our services acknowledges and understands that he/she has full knowledge of these terms and conditions outlined hereunder and is bound with them in every aspect and thereby has not relied on and shall have no remedy in respect of any statement, terms, conditions, representation, warranty, understanding, promise or assurance other than as expressly set out under this Agreement, whether willfully or negligently made by any person."/>
+                        Our service related terms and conditions are also mentioned below. We request you to read them carefully before availing any of our services. Should you avail any of our services, you confirm to be bound by these terms and conditions knowingly or unknowingly.
 
+                        Any person intending to avail any of our services acknowledges and understands that he/she has full knowledge of these terms and conditions outlined hereunder and is bound with them in every aspect and thereby has not relied on and shall have no remedy in respect of any statement, terms, conditions, representation, warranty, understanding, promise or assurance other than as expressly set out under this Agreement, whether willfully or negligently made by any person."
+                        android:textColor="@color/grey"
+                        android:visibility="visible" />
+                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>
 
 
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="end"
+             android:padding="15dp">-->
 
-       <!-- <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:padding="15dp">-->
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end">-->
+            android:gravity="end">-->
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:elevation="100dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:elevation="100dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey"
-            />
+            android:background="@color/grey" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/popup_menu"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BOOK"
-            android:layout_marginTop="5dp"
             android:layout_alignParentRight="true"
-            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
+            android:text="BOOK"
+            android:textColor="@color/white"
             android:textSize="15sp"
             app:backgroundTint="@color/button"
             app:cornerRadius="15dp"
             app:rippleColor="#33AAAAAA"
             app:strokeColor="@color/button"
-            app:strokeWidth="2dp"/>
+            app:strokeWidth="2dp" />
 
     </RelativeLayout>
 
