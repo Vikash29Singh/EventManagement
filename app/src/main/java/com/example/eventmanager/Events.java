@@ -57,7 +57,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event");
         //final String single_view = getRef(position).getKey();
 
 

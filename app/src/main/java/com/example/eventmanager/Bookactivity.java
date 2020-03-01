@@ -98,7 +98,7 @@ public class Bookactivity extends AppCompatActivity {
 
         //center_name.setText(center_name1);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("date");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event");
         /*Query query= databaseReference.child(event_name)*/
 
 
