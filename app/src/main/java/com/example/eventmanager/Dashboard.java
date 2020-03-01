@@ -75,7 +75,7 @@ public class Dashboard extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Events()).addToBackStack( "tag" ).commit();
+                    new Events()).commit();
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
