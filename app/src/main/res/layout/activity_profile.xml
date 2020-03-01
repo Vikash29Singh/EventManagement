@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
+    <include layout="@layout/toolbar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -17,6 +19,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/profile"
+            android:layout_marginTop="30dp"
             app:civ_border_width="0dp"
             app:civ_shadow="false"
             android:id="@+id/circularImageView"
@@ -32,7 +35,8 @@
             android:layout_height="wrap_content"
             android:text="Sujuka Kamehame"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"/>
 
     </LinearLayout>
 
@@ -41,22 +45,30 @@
         android:layout_height="match_parent"
         android:layout_marginTop="220dp"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   Home"
+            android:textSize="15dp"
             android:drawableLeft="@drawable/home"
-            android:layout_marginTop="50dp"/>
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            />
 
         <TextView
             android:id="@+id/order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   My Order"
-            android:drawableLeft="@drawable/home"
+            android:text="   My Bookings"
+            android:drawableLeft="@drawable/booking"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -64,64 +76,84 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   Payment"
-            android:drawableLeft="@drawable/home"
+            android:drawableLeft="@drawable/pay"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/offer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   Offers"
-            android:drawableLeft="@drawable/home"
+            android:drawableLeft="@drawable/discount"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"/>
 
         <View
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black"/>
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
 
         <TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   Communication"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   Call"
-            android:drawableLeft="@drawable/home"
+            android:text="   Call Us"
+            android:drawableLeft="@drawable/phone"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   Contact Us"
-            android:drawableLeft="@drawable/home"
+            android:text="   Support"
+            android:drawableLeft="@drawable/support"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   About Us"
-            android:drawableLeft="@drawable/home"
+            android:drawableLeft="@drawable/description"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"/>
 
         <View
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black"/>
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
 
         <TextView
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="   Logout"
-            android:drawableLeft="@drawable/home"
-            android:layout_marginTop="10dp"/>
+            android:drawableLeft="@drawable/logoutuser"
+            android:drawableTint="@color/txtcolor"
+            android:textColor="@color/txtcolor"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 
 </RelativeLayout>

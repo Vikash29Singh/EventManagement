@@ -2,12 +2,18 @@ package com.example.eventmanager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+
 import android.widget.ImageView;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,17 +28,31 @@ import com.squareup.picasso.Picasso;
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
+
     TextView tv, center_name;
+
+    TextView tv, tv1;
+
     DatabaseReference databaseReference;
     ImageView imageView;
     String event_name, image;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         tv = findViewById(R.id.event_name);
         center_name = findViewById(R.id.center_name);
+
 
         imageView = findViewById(R.id.imageView);
         event_name = getIntent().getExtras().getString("event_name");
@@ -44,6 +64,11 @@ public class Bookactivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("date");
         /*Query query= databaseReference.child(event_name)*/
+
+
+
+        
+
 
 
 
