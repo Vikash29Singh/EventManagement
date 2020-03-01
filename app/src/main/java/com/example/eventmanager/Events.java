@@ -42,6 +42,8 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     private BroadcastReceiver MyReceiver = null;
     private ProgressBar progressBar;
     private DatabaseReference databaseReference;
+    //private FirebaseMethods firebaseMethods;
+    private int imagecount = 0;
 
     @Nullable
     @Override
