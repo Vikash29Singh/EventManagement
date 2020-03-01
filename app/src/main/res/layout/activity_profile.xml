@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
+    <include layout="@layout/toolbar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -17,6 +19,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/profile"
+            android:layout_marginTop="30dp"
             app:civ_border_width="0dp"
             app:civ_shadow="false"
             android:id="@+id/circularImageView"
@@ -32,7 +35,8 @@
             android:layout_height="wrap_content"
             android:text="Sujuka Kamehame"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"/>
 
     </LinearLayout>
 
@@ -108,7 +112,7 @@
             android:id="@+id/call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   Call"
+            android:text="   Call Us"
             android:drawableLeft="@drawable/phone"
             android:drawableTint="@color/txtcolor"
             android:textColor="@color/txtcolor"
@@ -118,7 +122,7 @@
             android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   Contact Us"
+            android:text="   Support"
             android:drawableLeft="@drawable/support"
             android:drawableTint="@color/txtcolor"
             android:textColor="@color/txtcolor"

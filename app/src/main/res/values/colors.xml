@@ -19,4 +19,6 @@
     <color name="grey">#C0C9C2</color>
     <color name="txtcolor">#524E51</color>
 
+    <color name="transparent">#00555555</color>
+
 </resources>

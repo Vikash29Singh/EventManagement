@@ -2,6 +2,7 @@ package com.example.eventmanager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
@@ -26,10 +27,19 @@ public class Bookactivity extends AppCompatActivity {
     TextView tv, tv1;
     DatabaseReference databaseReference;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         tv = findViewById(R.id.event_name);
         String id = getIntent().getExtras().getString("event_name");
         tv.setText(id);

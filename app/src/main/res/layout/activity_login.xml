@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/button"
     tools:context=".Login">
 
     <androidx.constraintlayout.widget.Guideline
@@ -45,8 +45,8 @@
         android:layout_marginTop="73dp"
 
         android:hint="   Useremail"
-        android:textColorHint="@color/colorAccent"
-        app:boxStrokeColor="@color/colorAccent"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -73,8 +73,8 @@
         android:layout_marginTop="36dp"
 
         android:hint="   Password"
-        android:textColorHint="@color/colorAccent"
-        app:boxStrokeColor="@color/colorAccent"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"

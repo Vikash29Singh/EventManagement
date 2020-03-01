@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs"
+    android:layout_gravity="center">
+
+    <include layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:elevation="100dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="80dp"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@color/button"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_style"
+        android:layout_marginTop="250dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/event"
+        android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textAlignment="center"
+            android:text="Discover upcoming local events and outdoor activities in your city and nearby places and get interesting event recommendations. You can find events your friends are attending and follow them to stay updated on their activities. Every day find some new things to do near you be it a comedy show, free art classes, business conference or a live music concert."/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="15dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="NEXT"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        app:backgroundTint="@color/transparent"
+        app:cornerRadius="15dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/colorAccent"
+        app:strokeWidth="2dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

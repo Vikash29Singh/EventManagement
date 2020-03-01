@@ -1,6 +1,7 @@
 package com.example.eventmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,11 +16,18 @@ public class Profile extends AppCompatActivity {
 
     TextView home, payment, offer, order, logout;
     FirebaseAuth firebaseAuth;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
