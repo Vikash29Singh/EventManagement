@@ -77,8 +77,10 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(),Dashboard.class));
-        super.onBackPressed();
+        //super.onBackPressed();
+        startActivity(new Intent(Profile.this,Dashboard.class));
+        finish();
+
     }
 
 }
