@@ -27,7 +27,7 @@ public class Bookactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
-        tv = findViewById(R.id.tv);
+        tv = findViewById(R.id.event_name);
         String id = getIntent().getExtras().getString("event_name");
         tv.setText(id);
 
