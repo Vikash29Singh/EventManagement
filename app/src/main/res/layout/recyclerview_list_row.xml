@@ -35,7 +35,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
                     android:backgroundTint="@color/colorAccent"
                     android:src="@drawable/event"/>

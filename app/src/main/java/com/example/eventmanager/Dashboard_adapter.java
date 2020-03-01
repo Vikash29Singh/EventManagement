@@ -28,7 +28,7 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-       // public CookieHandler Picasso;
+        // public CookieHandler Picasso;
         TextView event_name, address, date, stime, center_name;
         ImageView imageView;
         ProgressBar progressBar;
@@ -42,6 +42,8 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
             address = (TextView) view.findViewById(R.id.address);
             date = (TextView) view.findViewById(R.id.time);
             stime = view.findViewById(R.id.stime);
+            center_name = view.findViewById(R.id.center_name);
+
             imageView = view.findViewById(R.id.imageView);
 
             //center_name = view.findViewById(R.id.center_name);
@@ -78,9 +80,9 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
         Dashboard_item_model model = modelist.get(position);
 
-        holder.event_name.setText(model.getEvent_name()+"\n"+model.getCenter_name());
+        holder.event_name.setText(model.getEvent_name());
         //String var = model.getI_alarm_weight() + " KG";
-
+        holder.center_name.setText(model.getCenter_name());
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
         holder.stime.setText(model.getStime()+" Onwards");
@@ -118,5 +120,5 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         void onRowClicked(int position, View v);
     }
 
-    }
+}
 
