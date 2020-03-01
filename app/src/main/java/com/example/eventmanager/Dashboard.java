@@ -160,17 +160,4 @@ public class Dashboard extends AppCompatActivity {
         Dashboard.super.onBackPressed();
     }*/
 
-    @Override
-    public void onBackPressed() {
-        tellFragments();
-        super.onBackPressed();
-    }
-
-    private void tellFragments(){
-        List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        for(Fragment f : fragments){
-            if(f != null && f instanceof Events)
-                ((Events)f).onBackPressed();
-        }
-    }
 }

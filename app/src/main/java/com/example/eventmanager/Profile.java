@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Profile extends AppCompatActivity {
 
-    TextView home, payment, offer, order, logout;
+    TextView home, payment, offer, order, logout, about;
     FirebaseAuth firebaseAuth;
     Toolbar toolbar;
 
@@ -23,11 +23,11 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        /*toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -36,6 +36,7 @@ public class Profile extends AppCompatActivity {
         offer = findViewById(R.id.offer);
         order = findViewById(R.id.order);
         logout = findViewById(R.id.logout);
+        about = findViewById(R.id.about);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,12 +45,24 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getApplicationContext(),AboutUs.class));
+                finish();
+
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
