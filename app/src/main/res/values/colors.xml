@@ -16,4 +16,7 @@
 
     <color name="navyblue">#0A0F85</color>
 
+    <color name="grey">#C0C9C2</color>
+    <color name="txtcolor">#524E51</color>
+
 </resources>

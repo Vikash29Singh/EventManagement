@@ -7,6 +7,9 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
-    TextView tv;
+    TextView tv, tv1;
     DatabaseReference databaseReference;
 
     @Override
@@ -30,6 +33,8 @@ public class Bookactivity extends AppCompatActivity {
         tv = findViewById(R.id.event_name);
         String id = getIntent().getExtras().getString("event_name");
         tv.setText(id);
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("date");
 
