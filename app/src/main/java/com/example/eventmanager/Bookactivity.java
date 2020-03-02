@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -23,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static java.sql.Types.NULL;
 
 public class Bookactivity extends AppCompatActivity {
@@ -38,17 +42,17 @@ public class Bookactivity extends AppCompatActivity {
     //    TextView tv, tv1;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
-    ImageView imageView, image;
+    ImageView imageView, image, download;
     String center_name1;
     String event_name1;
     String stime1;
     String date1;
     String image_view;
     int price1;
-     Button book, add, sub, ok, cancel;
+    Button book, add, sub, ok, cancel;
     private Dialog myDialog;
     String price;
-    int count=1;
+    int count = 1;
     int grand_tot;
 
     Toolbar toolbar;
@@ -66,7 +70,7 @@ public class Bookactivity extends AppCompatActivity {
 
 
         price = getIntent().getExtras().getString("price");
-
+        download = findViewById(R.id.download);
         //price1 = Integer.parseInt(price);
 
         progressBar = findViewById(R.id.progressbar);
@@ -88,10 +92,10 @@ public class Bookactivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count=count+1;
+                count = count + 1;
                 no_of_tickets.setText(String.valueOf(count));
                 tickets.setText(no_of_tickets.getText().toString());
-                
+
                 amount.setText(price);
                 sub.setEnabled(true);
             }
@@ -100,15 +104,12 @@ public class Bookactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sub.setEnabled(true);
-                if(count>=2)
-                {
+                if (count >= 2) {
                     count = count - 1;
                     no_of_tickets.setText(String.valueOf(count));
                     tickets.setText(no_of_tickets.getText().toString());
                     amount.setText(price);
-                }
-                else
-                {
+                } else {
                     sub.setEnabled(false);
                 }
 
@@ -118,7 +119,6 @@ public class Bookactivity extends AppCompatActivity {
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
         tac.setVisibility(View.INVISIBLE);
-
 
 
         //amount.setText(price);
@@ -132,9 +132,6 @@ public class Bookactivity extends AppCompatActivity {
         });
 
         //amount.setText(grand_tot);
-
-
-
 
 
         more.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +155,7 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
 
+
         event_name1 = getIntent().getExtras().getString("event_name");
         event_name.setText(event_name1);
        /* center_name1 = getIntent().getExtras().getString("center_name");
@@ -176,7 +174,13 @@ public class Bookactivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("event").child(event_name1);
         /*Query query= databaseReference.child(event_name)*/
 
+        download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //  downloadBroucher(getApplicationContext(),event_name1,".pdf",DIRECTORY_DOWNLOADS,url);
+            }
+        });
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -205,10 +209,23 @@ public class Bookactivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
+
     }
 
-        
 
+    private void downloadBroucher() {
+        // databaseReference.child("imageView").addOnSu
+    }
+
+
+    public void downloadfile(Context context, String filename, String fileExtension, String destinationDirectory, String url) {
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, filename + fileExtension);
+        downloadManager.enqueue(request);
+    }
 
 
 
