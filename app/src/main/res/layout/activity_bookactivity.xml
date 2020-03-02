@@ -38,6 +38,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="210dp"
         android:background="@drawable/booking_style"
+        android:outlineSpotShadowColor="@color/light"
         android:orientation="vertical"
         android:padding="15dp">
 

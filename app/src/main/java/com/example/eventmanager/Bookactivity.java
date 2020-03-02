@@ -49,7 +49,7 @@ public class Bookactivity extends AppCompatActivity {
     private Dialog myDialog;
     String price;
     int count=1;
-    int grand_tot;
+    int total;
 
     Toolbar toolbar;
 
@@ -67,7 +67,7 @@ public class Bookactivity extends AppCompatActivity {
 
         price = getIntent().getExtras().getString("price");
 
-        //price1 = Integer.parseInt(price);
+        price1 = Integer.parseInt(price);
 
         progressBar = findViewById(R.id.progressbar);
         event_name = findViewById(R.id.event_name);
@@ -91,8 +91,7 @@ public class Bookactivity extends AppCompatActivity {
                 count=count+1;
                 no_of_tickets.setText(String.valueOf(count));
                 tickets.setText(no_of_tickets.getText().toString());
-                
-                amount.setText(price);
+                total = count * price1;
                 sub.setEnabled(true);
             }
         });
@@ -105,7 +104,8 @@ public class Bookactivity extends AppCompatActivity {
                     count = count - 1;
                     no_of_tickets.setText(String.valueOf(count));
                     tickets.setText(no_of_tickets.getText().toString());
-                    amount.setText(price);
+                    total = count * price1;
+                    //amount.setText(price);
                 }
                 else
                 {
@@ -114,6 +114,8 @@ public class Bookactivity extends AppCompatActivity {
 
             }
         });
+
+        amount.setText(total);
 
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
