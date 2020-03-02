@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.widget.Button;
 import android.widget.ImageView;
 import android.view.View;
 
@@ -20,11 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static java.sql.Types.NULL;
+
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
 
-    TextView center_name, event_name, stime, date, tac;
+    TextView center_name, event_name, stime, date, tac, no_of_tickets, amount, tickets;
     private static ImageView more;
     /*private int current_image;
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
@@ -34,7 +39,17 @@ public class Bookactivity extends AppCompatActivity {
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
     ImageView imageView, image;
-    String center_name1, event_name1, stime1, date1, image_view, price1;
+    String center_name1;
+    String event_name1;
+    String stime1;
+    String date1;
+    String image_view;
+    int price1;
+     Button book, add, sub, ok, cancel;
+    private Dialog myDialog;
+    String price;
+    int count=1;
+    int grand_tot;
 
     Toolbar toolbar;
 
@@ -43,21 +58,85 @@ public class Bookactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookactivity);
 
-        //toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
-       /* setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-*/
+
+
+        price = getIntent().getExtras().getString("price");
+
+        //price1 = Integer.parseInt(price);
+
         progressBar = findViewById(R.id.progressbar);
         event_name = findViewById(R.id.event_name);
         center_name = findViewById(R.id.center_name);
         stime = findViewById(R.id.stime);
         date = findViewById(R.id.date);
         more = findViewById(R.id.more);
+        book = findViewById(R.id.book);
+        amount = findViewById(R.id.amount);
+        tickets = findViewById(R.id.tickets);
+
+        amount.setText(price);
+
+        add = findViewById(R.id.add);
+        sub = findViewById(R.id.sub);
+        no_of_tickets = findViewById(R.id.no_of_ticket);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count=count+1;
+                no_of_tickets.setText(String.valueOf(count));
+                tickets.setText(no_of_tickets.getText().toString());
+                
+                amount.setText(price);
+                sub.setEnabled(true);
+            }
+        });
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sub.setEnabled(true);
+                if(count>=2)
+                {
+                    count = count - 1;
+                    no_of_tickets.setText(String.valueOf(count));
+                    tickets.setText(no_of_tickets.getText().toString());
+                    amount.setText(price);
+                }
+                else
+                {
+                    sub.setEnabled(false);
+                }
+
+            }
+        });
+
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
         tac.setVisibility(View.INVISIBLE);
+
+
+
+        //amount.setText(price);
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
+        //amount.setText(grand_tot);
+
+
+
+
+
         more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +166,7 @@ public class Bookactivity extends AppCompatActivity {
         date.setText(date1);
         stime1 = getIntent().getExtras().getString("stime");
         stime.setText(stime1);
-        price1 = getIntent().getExtras().getString("price");
+        /*price1 = getIntent().getExtras().getString("price");*/
         /*String center_name1 = getIntent().getExtras().getString("center_name");
         String img =  getIntent().getExtras().getString("imageView");
         Picasso.get().load(img).into(imageView);*/
