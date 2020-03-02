@@ -25,11 +25,10 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
     public static int currentSelectedIndex;
 
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         // public CookieHandler Picasso;
-        TextView event_name, address, date, stime, center_name;
+        TextView event_name, address, date, stime, center_name, price;
         ImageView imageView;
         ProgressBar progressBar;
         LinearLayout ll1;
@@ -42,10 +41,10 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
             address = (TextView) view.findViewById(R.id.address);
             date = (TextView) view.findViewById(R.id.time);
             stime = view.findViewById(R.id.stime);
-            center_name = view.findViewById(R.id.center_name);
+            //center_name = view.findViewById(R.id.center_name);
 
             imageView = view.findViewById(R.id.imageView);
-
+            price = view.findViewById(R.id.price);
             //center_name = view.findViewById(R.id.center_name);
             //progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
@@ -82,13 +81,16 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
 
         holder.event_name.setText(model.getEvent_name());
         //String var = model.getI_alarm_weight() + " KG";
-        holder.center_name.setText(model.getCenter_name());
+        // holder.center_name.setText(model.getCenter_name());
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
-        holder.stime.setText(model.getStime()+" Onwards");
+        holder.price.setText(model.getPrice());
+        holder.stime.setText(model.getStime() + " Onwards");
+        //holder.price.getText();
         Picasso.get().load(model.getImageView()).placeholder(R.drawable.home).fit().into(holder.imageView);
         //holder.center_name.setText(model.getCenter_name());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
+        //holder.price.setVisibility(View.INVISIBLE);
 
         applyClickEvents(holder, position);
 

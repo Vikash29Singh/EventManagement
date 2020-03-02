@@ -58,7 +58,7 @@ public class Dashboard extends AppCompatActivity {
 
 
         //check status of internet
-        broadcastIntent();
+       // broadcastIntent();
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -140,15 +140,15 @@ public class Dashboard extends AppCompatActivity {
                 }
             };
 
-    public void broadcastIntent() {
+  /*  public void broadcastIntent() {
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        unregisterReceiver(MyReceiver);
-    }
+        unregisterReceiver(MyReceiver);
+    }*/
 
     @Override
     protected void onStart() {
