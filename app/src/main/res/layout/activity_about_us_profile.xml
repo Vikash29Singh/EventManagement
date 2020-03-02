@@ -33,6 +33,19 @@
         android:id="@+id/subtitle"
         android:text="Our Executive staff leads the Event Management team in finding elegant, streamlined answers to your most perplexing issues. We understand you industry to craft cutting-edge solutions with a competitive edge in mind."/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Meet Our Team"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="280dp"
+        android:elevation="100dp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/subtitle"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="40dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
@@ -118,12 +131,12 @@
             card_view:cardElevation="2dp"
             card_view:cardUseCompatPadding="true">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/saurav"
-            android:scaleType="fitXY"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/saurav" />
 
         </androidx.cardview.widget.CardView>
 
@@ -152,14 +165,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Meet Our Team"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+
 
 </RelativeLayout>
