@@ -175,11 +175,11 @@ public class Bookactivity extends AppCompatActivity {
 
         //center_name.setText(center_name1);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("event");
+        databaseReference = FirebaseDatabase.getInstance().getReference("event").child(event_name1);
         /*Query query= databaseReference.child(event_name)*/
 
 
-        databaseReference.child(event_name1).addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
