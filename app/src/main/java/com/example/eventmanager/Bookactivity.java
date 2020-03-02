@@ -4,17 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import android.widget.ImageView;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +17,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -36,11 +30,11 @@ public class Bookactivity extends AppCompatActivity {
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
     *///LinearLayout tac;
 
-//    TextView tv, tv1;
-
+    //    TextView tv, tv1;
+    private ProgressBar progressBar;
     DatabaseReference databaseReference;
     ImageView imageView, image;
-    String center_name1, event_name1, stime1, date1, image_view;
+    String center_name1, event_name1, stime1, date1, image_view, price1;
 
     Toolbar toolbar;
 
@@ -55,6 +49,7 @@ public class Bookactivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 */
+        progressBar = findViewById(R.id.progressbar);
         event_name = findViewById(R.id.event_name);
         center_name = findViewById(R.id.center_name);
         stime = findViewById(R.id.stime);
@@ -86,12 +81,13 @@ public class Bookactivity extends AppCompatActivity {
 
         event_name1 = getIntent().getExtras().getString("event_name");
         event_name.setText(event_name1);
-        center_name1 = getIntent().getExtras().getString("center_name");
-        center_name.setText(center_name1);
+       /* center_name1 = getIntent().getExtras().getString("center_name");
+        center_name.setText(center_name1);*/
         date1 = getIntent().getExtras().getString("date");
         date.setText(date1);
         stime1 = getIntent().getExtras().getString("stime");
         stime.setText(stime1);
+        price1 = getIntent().getExtras().getString("price");
         /*String center_name1 = getIntent().getExtras().getString("center_name");
         String img =  getIntent().getExtras().getString("imageView");
         Picasso.get().load(img).into(imageView);*/
@@ -102,13 +98,17 @@ public class Bookactivity extends AppCompatActivity {
         /*Query query= databaseReference.child(event_name)*/
 
 
-        databaseReference.child(date1).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(event_name1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
                 image_view = dataSnapshot.child("imageView").getValue(String.class);
-                Picasso.get().load(image_view).into(imageView);
+                Picasso.get().load(image_view).placeholder(R.drawable.home).into(imageView);
+                String center_name1 = dataSnapshot.child("center_name").getValue(String.class);
+                center_name.setText(center_name1);
+                progressBar.isIndeterminate();
+                progressBar.setVisibility(View.INVISIBLE);
                 //Picasso.get().load(model.getImageView()).into(holder.imageView);
                /*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
                center_name.setText(center_name1);
@@ -122,6 +122,8 @@ public class Bookactivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
+                progressBar.isIndeterminate();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
