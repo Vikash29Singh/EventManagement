@@ -56,10 +56,9 @@
             android:id="@+id/center_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:text="Center Name"
-            android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -187,6 +186,132 @@
                         android:textColor="@color/grey"
                         android:visibility="visible" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Select Your Tickets"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                   />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginRight="5dp">
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="PARTICIPANTS"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:text="Only 15 participants are allowed"
+                                android:textSize="10sp"
+                                android:textColor="@color/grey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="-"
+                                android:id="@+id/sub"
+                                android:background="@color/white"
+                                android:textStyle="bold"
+                                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:id="@+id/no_of_ticket"
+                                android:textAlignment="center"
+                                android:textSize="15sp" />
+
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="+"
+                                android:id="@+id/add"
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold"
+                                android:background="@color/white"
+                                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center">
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:layout_marginTop="20dp">
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="CANCEL"
+                                android:id="@+id/cancel"
+                                android:textColor="@color/colorAccent"
+                                android:background="@color/white"
+                                android:textStyle="bold"
+                                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="OK"
+                                android:id="@+id/ok"
+                                android:textColor="@color/colorAccent"
+                                android:background="@color/white"
+                                android:textStyle="bold"
+                                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
@@ -217,8 +342,62 @@
             android:layout_height="1dp"
             android:background="@color/grey" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="2dp"
+                    android:tint="@color/black"
+                    android:src="@drawable/rupee"
+                    android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/amount"
+                android:text="200"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/tickets"
+                android:text="1"
+                android:textAlignment="center"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ticket(s)"
+                android:textAlignment="center"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/popup_menu"
+            android:id="@+id/book"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

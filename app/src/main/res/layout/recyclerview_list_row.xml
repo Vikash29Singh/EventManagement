@@ -37,11 +37,12 @@
             <TextView
                 android:id="@+id/event_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-               android:layout_marginTop="170dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="168dp"
+                android:background="#80000000"
                 android:elevation="100dp"
                 android:text=" Center"
+                android:padding="5dp"
                 android:textAlignment="textStart"
                 android:textColor="@color/white"
                 android:textSize="18dp"
@@ -55,7 +56,7 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="420dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -203,33 +204,24 @@
                         android:src="@drawable/rupee"
                         android:layout_marginTop="5dp"/>
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:textSize="24dp"
-                        android:id="@+id/amount"
-                        android:textStyle="bold"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="2dp"
                         android:text="250"
                         android:textSize="24dp"
                         android:id="@+id/price"
                         android:textStyle="bold"
                         />
 
-                    <TextView
+                    <!--<TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text=""
                         android:textSize="24dp"
                         android:textStyle="bold"
-                        />
+                        />-->
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -240,6 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BOOK"
+                        android:layout_alignParentRight="true"
                         android:layout_marginLeft="80dp"
                         android:padding="5dp"
                         android:textSize="20dp"

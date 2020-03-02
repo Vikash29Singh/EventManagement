@@ -9,7 +9,7 @@
         android:right="-20dp"
         android:top="-80dp">
         <shape android:shape="oval">
-            <solid android:color="@color/button" />
+            <solid android:color="@color/graddown" />
         </shape>
     </item>
 </layer-list>
