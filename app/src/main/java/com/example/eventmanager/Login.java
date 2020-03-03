@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     EditText password, useremail;
-    Button btn_login;
+    Button btn_login,registraion;
     ProgressDialog progressBar;
     int count = 0, count1 = 3;
 
@@ -49,6 +49,14 @@ public class Login extends AppCompatActivity {
         password = (EditText) findViewById(R.id.Password);
 
         btn_login = (Button) findViewById(R.id.btn_login);
+        registraion  = (Button) findViewById(R.id.btn_registration);
+        registraion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Registration.class));
+            }
+        });
+
 
         // Session Manager
         //session = new Session(getApplicationContext());

@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,8 @@ import static java.sql.Types.NULL;
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
+    FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     TextView center_name, event_name, stime, date, tac, no_of_tickets, amount, tickets;
     private static ImageView more;
@@ -56,7 +60,7 @@ public class Bookactivity extends AppCompatActivity {
     int count = 1;
     int grand_tot;
 
-    int count=1;
+    //int count=1;
     int total;
 
     Toolbar toolbar;
@@ -96,6 +100,21 @@ public class Bookactivity extends AppCompatActivity {
         add = findViewById(R.id.add);
         sub = findViewById(R.id.sub);
         no_of_tickets = findViewById(R.id.no_of_ticket);
+        
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Toast.makeText(getApplicationContext(), "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent I = new Intent(getApplicationContext(), Login.class);
+                    startActivity(I);
+                } else {
+                }
+            }
+        };
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +124,12 @@ public class Bookactivity extends AppCompatActivity {
                 tickets.setText(no_of_tickets.getText().toString());
 
 
-                amount.setText(price);
+                //amount.setText(price);
 
                 total = count * price1;
-
+                //amount.setText(total);
+                amount.setText(Integer.toString(total));
+                //Toast.makeText(Bookactivity.this, total, Toast.LENGTH_SHORT).show();
                 sub.setEnabled(true);
             }
         });
@@ -120,22 +141,22 @@ public class Bookactivity extends AppCompatActivity {
                     count = count - 1;
                     no_of_tickets.setText(String.valueOf(count));
                     tickets.setText(no_of_tickets.getText().toString());
-
-                    amount.setText(price);
+                    total = count * price1;
+                    amount.setText(Integer.toString(total));
+                    //amount.setText(price);
                 } else {
 
                     total = count * price1;
+                    amount.setText(Integer.toString(total));
+                    sub.setEnabled(false);
                     //amount.setText(price);
                 }
-                else
-                {
-                    sub.setEnabled(false);
-                }
+
 
             }
         });
 
-        amount.setText(total);
+       // amount.setText(total);
 
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
@@ -276,7 +297,6 @@ public class Bookactivity extends AppCompatActivity {
 */
 
 
-
     /*public void broadcastIntent() {
         registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
@@ -313,5 +333,10 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
     }*/
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
 
 }
