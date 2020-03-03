@@ -109,21 +109,20 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Getting the values from the EditTexts
                 String amount = amount_et.getText().toString();
-                String note = noteEt.getText().toString();
+                //String note = noteEt.getText().toString();
                 String name = nameEt.getText().toString();
                 String upiId = upiIdEt.getText().toString();
-                payUsingUpi(amount, upiId, name, note);
+                payUsingUpi(amount, upiId, name);
             }
         });
 
     }
 
-    void payUsingUpi(String amount, String upiId, String name, String note) {
+    void payUsingUpi(String amount, String upiId, String name) {
 
         Uri uri = Uri.parse("upi://pay").buildUpon()
                 .appendQueryParameter("pa", upiId)
                 .appendQueryParameter("pn", name)
-                .appendQueryParameter("tn", note)
                 .appendQueryParameter("am", amount)
                 .appendQueryParameter("cu", "INR")
                 .build();
