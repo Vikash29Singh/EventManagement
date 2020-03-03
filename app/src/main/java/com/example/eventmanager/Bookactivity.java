@@ -274,8 +274,16 @@ public class Bookactivity extends AppCompatActivity {
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        booking();
+
+                    }
+                });
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
                         myDialog.dismiss();
+
 
                     }
                 });
@@ -366,7 +374,7 @@ public class Bookactivity extends AppCompatActivity {
 
 
                 image_view = dataSnapshot.child("imageView").getValue(String.class);
-                Picasso.get().load(image_view).placeholder(R.drawable.home).into(imageView);
+                Picasso.get().load(image_view).placeholder(R.drawable.applogoblack).into(imageView);
                 String center_name1 = dataSnapshot.child("center_name").getValue(String.class);
                 center_name.setText(center_name1);
 
@@ -391,19 +399,6 @@ public class Bookactivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
-
-       /* map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-                Intent intent1 = new Intent(Intent.ACTION_VIEW);
-                intent1.setData(Uri.parse("geo: 12.9344, 77.6061"));
-                Intent chooser=Intent.createChooser(intent1,"Launch Maps");
-                startActivity(chooser);
-            }
-        });*/
 
     }
 
@@ -515,5 +510,10 @@ public class Bookactivity extends AppCompatActivity {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
-
+public void booking(){
+    Intent intent = new Intent(Bookactivity.this, PaymentActivity.class);
+    intent.putExtra("amount", amount.getText().toString());
+    startActivity(intent);
+    finish();
+}
 }
