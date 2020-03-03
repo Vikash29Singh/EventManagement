@@ -47,7 +47,7 @@ public class Bookactivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    TextView center_name, event_name, stime, date, tac, no_of_tickets, amount, tickets;
+    TextView center_name, event_name, stime, date, tac, no_of_tickets, amount, tickets, description;
     private static ImageView more;
     /*private int current_image;
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
@@ -73,7 +73,7 @@ public class Bookactivity extends AppCompatActivity {
 
     LinearLayout amount_click;
 
-    String pricex,directionlocation;
+    String pricex, directionlocation;
     int count = 1;
 
     int grand_tot;
@@ -119,7 +119,7 @@ public class Bookactivity extends AppCompatActivity {
 
         price1 = Integer.parseInt(pricex);
 
-
+        description = findViewById(R.id.description);
         progressBar = findViewById(R.id.progressbar);
         event_name = findViewById(R.id.event_name);
         center_name = findViewById(R.id.center_name);
@@ -380,6 +380,10 @@ public class Bookactivity extends AppCompatActivity {
 
                 firebaseURL = dataSnapshot.child("brochoure").getValue(String.class);
                 directionlocation = dataSnapshot.child("address").getValue(String.class);
+                String amt = dataSnapshot.child("price").getValue(String.class);
+                amount.setText(amt);
+                String desc = dataSnapshot.child("synopsis").getValue(String.class);
+                description.setText(desc);
                 progressBar.isIndeterminate();
                 progressBar.setVisibility(View.INVISIBLE);
                 //Picasso.get().load(model.getImageView()).into(holder.imageView);
@@ -448,10 +452,10 @@ public class Bookactivity extends AppCompatActivity {
         firebaseAuth.addAuthStateListener(authStateListener);
     }
 
-public void booking(){
-    Intent intent = new Intent(Bookactivity.this, PaymentActivity.class);
-    intent.putExtra("amount", amount.getText().toString());
-    startActivity(intent);
-    finish();
-}
+    public void booking() {
+        Intent intent = new Intent(Bookactivity.this, PaymentActivity.class);
+        intent.putExtra("amount", amount.getText().toString());
+        startActivity(intent);
+        finish();
+    }
 }
