@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.view.View;
@@ -43,7 +47,7 @@ public class Bookactivity extends AppCompatActivity {
     /*private int current_image;
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
     *///LinearLayout tac;
-
+    String [] permission;
     //    TextView tv, tv1;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
@@ -56,6 +60,10 @@ public class Bookactivity extends AppCompatActivity {
     int price1;
     Button book, add, sub, ok, cancel;
     private Dialog myDialog;
+
+    String price;
+    private static final int PERMISSION_STORAGE_CODE = 1000;
+
 
     LinearLayout amount_click;
 
@@ -70,7 +78,7 @@ public class Bookactivity extends AppCompatActivity {
     int total;
 
     Toolbar toolbar;
-
+String firebaseURL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,6 +182,9 @@ public class Bookactivity extends AppCompatActivity {
             }
         });*/
 
+
+
+        // amount.setText(total);
 
 
         tac = findViewById(R.id.tac);
@@ -320,6 +331,18 @@ public class Bookactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
+                            .PERMISSION_DENIED) {
+                        String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permission,PERMISSION_STORAGE_CODE);
+
+                    } else {
+                        startDownloading();
+                    }
+                } else {
+
+                }
                 //  downloadBroucher(getApplicationContext(),event_name1,".pdf",DIRECTORY_DOWNLOADS,url);
             }
         });
@@ -332,6 +355,8 @@ public class Bookactivity extends AppCompatActivity {
                 Picasso.get().load(image_view).placeholder(R.drawable.home).into(imageView);
                 String center_name1 = dataSnapshot.child("center_name").getValue(String.class);
                 center_name.setText(center_name1);
+
+                firebaseURL = dataSnapshot.child("brochoure").getValue(String.class);
                 progressBar.isIndeterminate();
                 progressBar.setVisibility(View.INVISIBLE);
                 //Picasso.get().load(model.getImageView()).into(holder.imageView);
@@ -354,6 +379,30 @@ public class Bookactivity extends AppCompatActivity {
 
     }
 
+    private void startDownloading() {
+        String url = firebaseURL;
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        request.setTitle("Download")
+                .setDescription("Download File...");
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "" + System.currentTimeMillis());
+        DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+switch (requestCode){
+    case PERMISSION_STORAGE_CODE : {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+startDownloading();
+        }
+        else {
+            Toast.makeText(this, "Permission denied...", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+    }
 
     private void downloadBroucher() {
         // databaseReference.child("imageView").addOnSu

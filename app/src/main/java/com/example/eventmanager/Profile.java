@@ -20,13 +20,20 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends AppCompatActivity {
 
-    TextView home, payment, offer, order, logout, about, call, support;
+    TextView home, payment, offer, order, logout, about, call, support, username;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     Toolbar toolbar;
+    private DatabaseReference databaseReference;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,8 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
 
         home = findViewById(R.id.home);
         payment = findViewById(R.id.payment);
@@ -49,7 +58,20 @@ public class Profile extends AppCompatActivity {
         about = findViewById(R.id.about);
         call = findViewById(R.id.call);
         support = findViewById(R.id.support);
+        username = findViewById(R.id.username);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String uname = dataSnapshot.child(uid).child("organization").getValue(String.class);
+                username.setText(uname);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -66,7 +88,7 @@ public class Profile extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
 
             }
         });
@@ -82,7 +104,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getApplicationContext(),AboutUs.class));
+                startActivity(new Intent(getApplicationContext(), AboutUs.class));
                 finish();
 
             }
@@ -94,13 +116,12 @@ public class Profile extends AppCompatActivity {
 
                 Intent i = new Intent(Intent.ACTION_CALL);
 
-                    i.setData(Uri.parse("tel:9435312345"));    // default dial number
+                i.setData(Uri.parse("tel:9435312345"));    // default dial number
 
                 if (ActivityCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(Profile.this,"Please grant the permission to call",Toast.LENGTH_SHORT).show();
-                    ActivityCompat.requestPermissions(Profile.this, new String[]{Manifest.permission.CALL_PHONE},1);
-                }
-                else {
+                    Toast.makeText(Profile.this, "Please grant the permission to call", Toast.LENGTH_SHORT).show();
+                    ActivityCompat.requestPermissions(Profile.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                } else {
                     startActivity(i);
                 }
 
@@ -110,14 +131,14 @@ public class Profile extends AppCompatActivity {
         support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3=new Intent(Intent.ACTION_SEND);
+                Intent intent3 = new Intent(Intent.ACTION_SEND);
                 intent3.setData(Uri.parse("email"));
-                String[] s={"email_us@gmail.com"};
-                intent3.putExtra(Intent.EXTRA_EMAIL,s);
-                intent3.putExtra(Intent.EXTRA_SUBJECT,"Please Enter the Subject");
-                intent3.putExtra(Intent.EXTRA_TEXT,"Please Enter the Body of the Email");
+                String[] s = {"email_us@gmail.com"};
+                intent3.putExtra(Intent.EXTRA_EMAIL, s);
+                intent3.putExtra(Intent.EXTRA_SUBJECT, "Please Enter the Subject");
+                intent3.putExtra(Intent.EXTRA_TEXT, "Please Enter the Body of the Email");
                 intent3.setType("message/rfc822");
-                Intent chooser=Intent.createChooser(intent3,"Launch Email");
+                Intent chooser = Intent.createChooser(intent3, "Launch Email");
                 startActivity(chooser);
             }
         });
@@ -136,10 +157,11 @@ public class Profile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        startActivity(new Intent(Profile.this,Dashboard.class));
+        startActivity(new Intent(Profile.this, Dashboard.class));
         finish();
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
