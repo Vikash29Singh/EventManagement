@@ -134,7 +134,15 @@
                     android:text="Synopsis"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/home"
 
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
                 <ImageView
                     android:id="@+id/download"
                     android:layout_width="wrap_content"
