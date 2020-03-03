@@ -24,6 +24,15 @@ public class AboutUs extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AboutUs.this, Profile.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         next = findViewById(R.id.next);
 
         next.setOnClickListener(new View.OnClickListener() {

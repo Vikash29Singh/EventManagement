@@ -3,7 +3,9 @@ package com.example.eventmanager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 
 public class About_us_profile extends AppCompatActivity {
@@ -20,6 +22,15 @@ public class About_us_profile extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(About_us_profile.this, AboutUs.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
