@@ -47,7 +47,7 @@ public class Bookactivity extends AppCompatActivity {
     int price1;
      Button book, add, sub, ok, cancel;
     private Dialog myDialog;
-    String price;
+    String pricex;
     int count=1;
     int total;
 
@@ -65,9 +65,13 @@ public class Bookactivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        price = getIntent().getExtras().getString("price");
+        pricex = getIntent().getExtras().getString("price");
 
-        price1 = Integer.parseInt(price);
+        price1 = Integer.parseInt(pricex);
+
+        int p = price1 + 5;
+
+
 
         progressBar = findViewById(R.id.progressbar);
         event_name = findViewById(R.id.event_name);
@@ -79,7 +83,7 @@ public class Bookactivity extends AppCompatActivity {
         amount = findViewById(R.id.amount);
         tickets = findViewById(R.id.tickets);
 
-        amount.setText(price);
+        amount.setText(p);
 
         add = findViewById(R.id.add);
         sub = findViewById(R.id.sub);
@@ -91,7 +95,7 @@ public class Bookactivity extends AppCompatActivity {
                 count=count+1;
                 no_of_tickets.setText(String.valueOf(count));
                 tickets.setText(no_of_tickets.getText().toString());
-                total = count * price1;
+                //total = count * Integer.parseInt(pricex);
                 sub.setEnabled(true);
             }
         });
@@ -104,7 +108,7 @@ public class Bookactivity extends AppCompatActivity {
                     count = count - 1;
                     no_of_tickets.setText(String.valueOf(count));
                     tickets.setText(no_of_tickets.getText().toString());
-                    total = count * price1;
+                    //total = count * price1;
                     //amount.setText(price);
                 }
                 else
@@ -115,7 +119,7 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
 
-        amount.setText(total);
+        //amount.setText(String.valueOf(total));
 
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
