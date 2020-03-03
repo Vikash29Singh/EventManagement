@@ -1,5 +1,6 @@
 package com.example.eventmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -18,11 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Profile extends AppCompatActivity {
 
     TextView home, payment, offer, order, logout, about, call, support;
     FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     Toolbar toolbar;
 
     @Override
@@ -46,6 +49,19 @@ public class Profile extends AppCompatActivity {
         about = findViewById(R.id.about);
         call = findViewById(R.id.call);
         support = findViewById(R.id.support);
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Toast.makeText(getApplicationContext(), "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent I = new Intent(getApplicationContext(), Login.class);
+                    startActivity(I);
+                } else {
+                }
+            }
+        };
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +139,11 @@ public class Profile extends AppCompatActivity {
         startActivity(new Intent(Profile.this,Dashboard.class));
         finish();
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
 }

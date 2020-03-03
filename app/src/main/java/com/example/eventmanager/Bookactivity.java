@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -16,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,11 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static java.sql.Types.NULL;
 
 public class Bookactivity extends AppCompatActivity {
 
     // private BroadcastReceiver MyReceiver = null;
+    FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     TextView center_name, event_name, stime, date, tac, no_of_tickets, amount, tickets;
     private static ImageView more;
@@ -38,17 +46,24 @@ public class Bookactivity extends AppCompatActivity {
     //    TextView tv, tv1;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
-    ImageView imageView, image;
+    ImageView imageView, image, download;
     String center_name1;
     String event_name1;
     String stime1;
     String date1;
     String image_view;
     int price1;
-     Button book, add, sub, ok, cancel;
+    Button book, add, sub, ok, cancel;
     private Dialog myDialog;
+
     String pricex;
     int count=1;
+
+    String price;
+    int grand_tot;
+
+    //int count=1;
+
     int total;
 
     Toolbar toolbar;
@@ -71,6 +86,11 @@ public class Bookactivity extends AppCompatActivity {
 
         int p = price1 + 5;
 
+        download = findViewById(R.id.download);
+        //price1 = Integer.parseInt(price);
+
+
+        price1 = Integer.parseInt(price);
 
 
         progressBar = findViewById(R.id.progressbar);
@@ -89,13 +109,37 @@ public class Bookactivity extends AppCompatActivity {
         sub = findViewById(R.id.sub);
         no_of_tickets = findViewById(R.id.no_of_ticket);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Toast.makeText(getApplicationContext(), "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent I = new Intent(getApplicationContext(), Login.class);
+                    startActivity(I);
+                } else {
+                }
+            }
+        };
+
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count=count+1;
+                count = count + 1;
                 no_of_tickets.setText(String.valueOf(count));
                 tickets.setText(no_of_tickets.getText().toString());
-                //total = count * Integer.parseInt(pricex);
+
+
+
+                //amount.setText(price);
+
+                total = count * price1;
+                //amount.setText(total);
+                amount.setText(Integer.toString(total));
+                //Toast.makeText(Bookactivity.this, total, Toast.LENGTH_SHORT).show();
+
                 sub.setEnabled(true);
             }
         });
@@ -103,28 +147,32 @@ public class Bookactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sub.setEnabled(true);
-                if(count>=2)
-                {
+                if (count >= 2) {
                     count = count - 1;
                     no_of_tickets.setText(String.valueOf(count));
                     tickets.setText(no_of_tickets.getText().toString());
-                    //total = count * price1;
+
+                    total = count * price1;
+                    amount.setText(Integer.toString(total));
+
+                    //amount.setText(price);
+                } else {
+
+                    total = count * price1;
+                    amount.setText(Integer.toString(total));
+                    sub.setEnabled(false);
                     //amount.setText(price);
                 }
-                else
-                {
-                    sub.setEnabled(false);
-                }
+
 
             }
         });
 
-        //amount.setText(String.valueOf(total));
+
 
         tac = findViewById(R.id.tac);
         imageView = findViewById(R.id.imageView);
         tac.setVisibility(View.INVISIBLE);
-
 
 
         //amount.setText(price);
@@ -138,9 +186,6 @@ public class Bookactivity extends AppCompatActivity {
         });
 
         //amount.setText(grand_tot);
-
-
-
 
 
         more.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +209,7 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
 
+
         event_name1 = getIntent().getExtras().getString("event_name");
         event_name.setText(event_name1);
        /* center_name1 = getIntent().getExtras().getString("center_name");
@@ -182,7 +228,13 @@ public class Bookactivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("event").child(event_name1);
         /*Query query= databaseReference.child(event_name)*/
 
+        download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //  downloadBroucher(getApplicationContext(),event_name1,".pdf",DIRECTORY_DOWNLOADS,url);
+            }
+        });
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -211,10 +263,23 @@ public class Bookactivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
+
     }
 
-        
 
+    private void downloadBroucher() {
+        // databaseReference.child("imageView").addOnSu
+    }
+
+
+    public void downloadfile(Context context, String filename, String fileExtension, String destinationDirectory, String url) {
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, filename + fileExtension);
+        downloadManager.enqueue(request);
+    }
 
 
 
@@ -242,7 +307,6 @@ public class Bookactivity extends AppCompatActivity {
 
         broadcastIntent();
 */
-
 
 
     /*public void broadcastIntent() {
@@ -281,5 +345,10 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
     }*/
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
 
 }
