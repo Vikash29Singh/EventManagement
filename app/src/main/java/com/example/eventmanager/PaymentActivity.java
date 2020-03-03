@@ -33,9 +33,9 @@ public class PaymentActivity extends AppCompatActivity {
     EditText amount_et, noteEt, nameEt, upiIdEt;
     Toolbar toolbar;
     final int UPI_PAYMENT = 0;
-    private DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private DatabaseReference databaseReference;
     String uid;
 
     @Override
@@ -46,6 +46,7 @@ public class PaymentActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,7 +66,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         send = findViewById(R.id.send);
         amount_et = findViewById(R.id.amount_et);
-        noteEt = findViewById(R.id.note);
+        //noteEt = findViewById(R.id.note);
         nameEt = findViewById(R.id.name);
         upiIdEt = findViewById(R.id.upi_id);
 
@@ -82,6 +83,7 @@ public class PaymentActivity extends AppCompatActivity {
                 String uname = dataSnapshot.child(uid).child("organization").getValue(String.class);
                 nameEt.setText(uname);
                 nameEt.setEnabled(false);
+
             }
 
             @Override
