@@ -178,6 +178,15 @@
                     android:text="A synopsis conveys the narrative arc, an explanation of the problem or plot, the characters, and how the book or novel ends. It ensures character actions and motivations are realistic and make sense. It summarizes what happens and who changes from beginning to end of the story."
                     android:textColor="@color/grey" />
 
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grey" />
+
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -281,7 +290,7 @@
                     android:id="@+id/amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="200"
+
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
