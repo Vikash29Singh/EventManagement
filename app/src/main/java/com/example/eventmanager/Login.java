@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     EditText password, useremail;
-    Button btn_login,registraion;
+    Button btn_login;
+    TextView registraion;
     ProgressDialog progressBar;
     int count = 0, count1 = 3;
 
@@ -49,7 +51,7 @@ public class Login extends AppCompatActivity {
         password = (EditText) findViewById(R.id.Password);
 
         btn_login = (Button) findViewById(R.id.btn_login);
-        registraion  = (Button) findViewById(R.id.btn_registration);
+        registraion  = findViewById(R.id.btn_registration);
         registraion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
