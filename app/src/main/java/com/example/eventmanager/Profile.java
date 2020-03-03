@@ -88,6 +88,7 @@ public class Profile extends AppCompatActivity {
                 if (user == null) {
                     Intent I = new Intent(getApplicationContext(), Login.class);
                     startActivity(I);
+                    finish();
                 } else {
                 }
             }
@@ -97,6 +98,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                finish();
 
             }
         });

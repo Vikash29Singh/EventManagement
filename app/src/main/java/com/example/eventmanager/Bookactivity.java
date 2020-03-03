@@ -392,7 +392,7 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
 
-        map.setOnClickListener(new View.OnClickListener() {
+       /* map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -403,7 +403,7 @@ public class Bookactivity extends AppCompatActivity {
                 Intent chooser=Intent.createChooser(intent1,"Launch Maps");
                 startActivity(chooser);
             }
-        });
+        });*/
 
     }
 
