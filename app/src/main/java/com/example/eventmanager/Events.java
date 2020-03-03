@@ -34,7 +34,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     private Dashboard_adapter dashboard_adapter;
     private Context ctx;
     private BroadcastReceiver MyReceiver = null;
-    private ProgressBar progressBar;
+
     private DatabaseReference databaseReference;
     //private FirebaseMethods firebaseMethods;
     private int imagecount = 0;
@@ -44,7 +44,6 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.events, container, false);
 
-        progressBar = v.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -70,8 +69,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
 
                 dashboard_adapter = new Dashboard_adapter(getActivity(), modelist, Events.this);
                 recyclerView.setAdapter(dashboard_adapter);
-                progressBar.isIndeterminate();
-                progressBar.setVisibility(View.INVISIBLE);
+
                /* Asyncprogress T = new Asyncprogress(getContext());
                 T.execute();   // this will call do in background
 */
@@ -104,7 +102,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), "Error....!!", Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.INVISIBLE);
+
                 /*Asyncprogress T = new Asyncprogress(getContext());
                 T.execute();   // this will call do in backgroun*/
             }

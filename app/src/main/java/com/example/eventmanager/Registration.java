@@ -22,7 +22,7 @@ public class Registration extends AppCompatActivity {
     EditText email, contact, organization, password;
     Button signup;
 
-    private ProgressBar progressBar;
+
 
     private FirebaseAuth mAuth;
 
@@ -36,9 +36,9 @@ public class Registration extends AppCompatActivity {
         organization = findViewById(R.id.organization);
         password = findViewById(R.id.password);
         signup = findViewById(R.id.signup);
-        progressBar = findViewById(R.id.progressbar);
+
         mAuth = FirebaseAuth.getInstance();
-        progressBar.setVisibility(View.INVISIBLE);
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +104,7 @@ public class Registration extends AppCompatActivity {
             contact.requestFocus();
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
+
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -118,7 +118,7 @@ public class Registration extends AppCompatActivity {
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    progressBar.setVisibility(View.GONE);
+                                    
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), "Registration Succesfull", Toast.LENGTH_LONG).show();
                                     } else {
