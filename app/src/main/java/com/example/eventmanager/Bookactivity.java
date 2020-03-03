@@ -100,7 +100,7 @@ public class Bookactivity extends AppCompatActivity {
         add = findViewById(R.id.add);
         sub = findViewById(R.id.sub);
         no_of_tickets = findViewById(R.id.no_of_ticket);
-        
+
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
