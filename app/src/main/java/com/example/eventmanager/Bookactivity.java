@@ -69,8 +69,6 @@ public class Bookactivity extends AppCompatActivity {
 
     String pricex;
     int count=1;
-
-    String price;
     int grand_tot;
 
     //int count=1;
@@ -92,6 +90,14 @@ String firebaseURL;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Bookactivity.this, Dashboard.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         pricex = getIntent().getExtras().getString("price");
 

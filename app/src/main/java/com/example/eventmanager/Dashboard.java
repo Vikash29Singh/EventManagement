@@ -110,7 +110,10 @@ public class Dashboard extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.home:
                             selectedFragment = new Events();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    selectedFragment).commit();
                             break;
+
                         case R.id.profile:
                             Intent intent = new Intent(Dashboard.this, Profile.class);
                             startActivity(intent);
@@ -133,8 +136,8 @@ public class Dashboard extends AppCompatActivity {
                             break;*/
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
+                    /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            selectedFragment).commit();*/
 
                     return true;
                 }
