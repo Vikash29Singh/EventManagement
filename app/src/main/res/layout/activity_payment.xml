@@ -46,18 +46,6 @@
         android:layout_below="@+id/upi_id"
         android:background="@drawable/rounded_edittext"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="Note"
-        android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/note"
-        android:layout_below="@+id/name"
-        android:background="@drawable/rounded_edittext"/>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/send"
         style="@style/Widget.AppCompat.Button.Borderless"
