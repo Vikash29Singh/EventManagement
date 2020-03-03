@@ -42,7 +42,7 @@
         android:layout_height="170dp"
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
-        android:src="@drawable/event"
+        android:src="@drawable/aboutus"
         android:scaleType="fitXY"/>
 
         <TextView
