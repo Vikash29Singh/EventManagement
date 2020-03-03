@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.view.View;
 
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,8 @@ public class Bookactivity extends AppCompatActivity {
     Button book, add, sub, ok, cancel;
     private Dialog myDialog;
 
+    LinearLayout amount_click;
+
     String pricex;
     int count=1;
 
@@ -75,6 +78,8 @@ public class Bookactivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
 
+        myDialog = new Dialog(this);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,13 +89,13 @@ public class Bookactivity extends AppCompatActivity {
 
         price1 = Integer.parseInt(pricex);
 
-        int p = price1 + 5;
+        //int p = price1 + 5;
 
         download = findViewById(R.id.download);
         //price1 = Integer.parseInt(price);
 
 
-        price1 = Integer.parseInt(price);
+        price1 = Integer.parseInt(pricex);
 
 
         progressBar = findViewById(R.id.progressbar);
@@ -102,12 +107,13 @@ public class Bookactivity extends AppCompatActivity {
         book = findViewById(R.id.book);
         amount = findViewById(R.id.amount);
         tickets = findViewById(R.id.tickets);
+        amount_click = findViewById(R.id.amount_click);
 
-        amount.setText(p);
+        //amount.setText(p);
 
-        add = findViewById(R.id.add);
+        /*add = findViewById(R.id.add);
         sub = findViewById(R.id.sub);
-        no_of_tickets = findViewById(R.id.no_of_ticket);
+        no_of_tickets = findViewById(R.id.no_of_ticket);*/
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -124,7 +130,7 @@ public class Bookactivity extends AppCompatActivity {
         };
 
 
-        add.setOnClickListener(new View.OnClickListener() {
+        /*add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count = count + 1;
@@ -166,7 +172,7 @@ public class Bookactivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
 
@@ -177,10 +183,92 @@ public class Bookactivity extends AppCompatActivity {
 
         //amount.setText(price);
 
+        amount_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                myDialog.setContentView(R.layout.ticket_count);
+                add = myDialog.findViewById(R.id.add);
+                sub = myDialog.findViewById(R.id.sub);
+                ok = myDialog.findViewById(R.id.ok);
+                cancel = myDialog.findViewById(R.id.cancel);
+                no_of_tickets = myDialog.findViewById(R.id.no_of_ticket);
+
+                add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(count>=15)
+                        {
+                            add.setEnabled(false);
+                        }
+                        else {
+                            //add.setEnabled(true);
+                            count = count + 1;
+                            no_of_tickets.setText(String.valueOf(count));
+                            tickets.setText(no_of_tickets.getText().toString());
+
+
+                            //amount.setText(price);
+
+                            total = count * price1;
+                            //amount.setText(total);
+                            amount.setText(Integer.toString(total));
+                            //Toast.makeText(Bookactivity.this, total, Toast.LENGTH_SHORT).show();
+
+                            sub.setEnabled(true);
+                        }
+                    }
+                });
+                sub.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sub.setEnabled(true);
+                        add.setEnabled(true);
+                        if (count >= 2) {
+                            count = count - 1;
+                            no_of_tickets.setText(String.valueOf(count));
+                            tickets.setText(no_of_tickets.getText().toString());
+
+                            total = count * price1;
+                            amount.setText(Integer.toString(total));
+
+                            //amount.setText(price);
+                        } else {
+
+                            total = count * price1;
+                            amount.setText(Integer.toString(total));
+                            sub.setEnabled(false);
+                            //amount.setText(price);
+                        }
+
+
+                    }
+                });
+
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        myDialog.dismiss();
+
+                    }
+                });
+
+                myDialog.setCancelable(false);
+                myDialog.show();
+
+            }
+        });
+
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(Bookactivity.this, PaymentActivity.class);
+                intent.putExtra("amount", amount.getText().toString());
+                startActivity(intent);
+                finish();
 
             }
         });
