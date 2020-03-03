@@ -3,6 +3,7 @@ package com.example.eventmanager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -10,6 +11,8 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +36,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static java.sql.Types.NULL;
 
@@ -47,11 +52,12 @@ public class Bookactivity extends AppCompatActivity {
     /*private int current_image;
     int[] images = {R.drawable.ic_keyboard_arrow_up_black_24dp,R.drawable.ic_keyboard_arrow_down_black_24dp};
     *///LinearLayout tac;
-    String [] permission;
+    String[] permission;
     //    TextView tv, tv1;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
-    ImageView imageView, image, download;
+    ImageView imageView, image, map;
+    CardView download;
     String center_name1;
     String event_name1;
     String stime1;
@@ -67,8 +73,8 @@ public class Bookactivity extends AppCompatActivity {
 
     LinearLayout amount_click;
 
-    String pricex;
-    int count=1;
+    String pricex,directionlocation;
+    int count = 1;
 
     int grand_tot;
 
@@ -77,7 +83,8 @@ public class Bookactivity extends AppCompatActivity {
     int total;
 
     Toolbar toolbar;
-String firebaseURL;
+    String firebaseURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +129,10 @@ String firebaseURL;
         book = findViewById(R.id.book);
         amount = findViewById(R.id.amount);
         tickets = findViewById(R.id.tickets);
+        //map = findViewById(R.id.map);
+
         amount_click = findViewById(R.id.amount_click);
+
 
         //amount.setText(p);
 
@@ -190,7 +200,6 @@ String firebaseURL;
         });*/
 
 
-
         // amount.setText(total);
 
 
@@ -216,11 +225,9 @@ String firebaseURL;
                     @Override
                     public void onClick(View view) {
 
-                        if(count>=15)
-                        {
+                        if (count >= 15) {
                             add.setEnabled(false);
-                        }
-                        else {
+                        } else {
                             //add.setEnabled(true);
                             count = count + 1;
                             no_of_tickets.setText(String.valueOf(count));
@@ -342,7 +349,7 @@ String firebaseURL;
                     if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
                             .PERMISSION_DENIED) {
                         String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permission,PERMISSION_STORAGE_CODE);
+                        requestPermissions(permission, PERMISSION_STORAGE_CODE);
 
                     } else {
                         startDownloading();
@@ -364,6 +371,7 @@ String firebaseURL;
                 center_name.setText(center_name1);
 
                 firebaseURL = dataSnapshot.child("brochoure").getValue(String.class);
+                directionlocation = dataSnapshot.child("address").getValue(String.class);
                 progressBar.isIndeterminate();
                 progressBar.setVisibility(View.INVISIBLE);
                 //Picasso.get().load(model.getImageView()).into(holder.imageView);
@@ -384,7 +392,21 @@ String firebaseURL;
             }
         });
 
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                Intent intent1 = new Intent(Intent.ACTION_VIEW);
+                intent1.setData(Uri.parse("geo: 12.9344, 77.6061"));
+                Intent chooser=Intent.createChooser(intent1,"Launch Maps");
+                startActivity(chooser);
+            }
+        });
+
     }
+
 
     private void startDownloading() {
         String url = firebaseURL;
@@ -399,16 +421,15 @@ String firebaseURL;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-switch (requestCode){
-    case PERMISSION_STORAGE_CODE : {
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-startDownloading();
+        switch (requestCode) {
+            case PERMISSION_STORAGE_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startDownloading();
+                } else {
+                    Toast.makeText(this, "Permission denied...", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
-        else {
-            Toast.makeText(this, "Permission denied...", Toast.LENGTH_SHORT).show();
-        }
-    }
-}
     }
 
     private void downloadBroucher() {

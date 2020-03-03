@@ -82,7 +82,7 @@ public class Dashboard extends AppCompatActivity {
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);*/
                     //alert.showAlertDialog(LoginActivity.this, "Login failed..", "Please enter username and password", false);
-                    Toast.makeText(getApplicationContext(), "Welcome Back", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Welcome Back", Toast.LENGTH_SHORT).show();
                     //selectedFragment = new Train_book();
                     //Toast.makeText(getApplicationContext(), "Login to continue", Toast.LENGTH_SHORT).show();
                 }
