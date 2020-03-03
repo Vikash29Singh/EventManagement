@@ -43,7 +43,6 @@ public class Splash extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
 
-                    Toast.makeText(getApplicationContext(), "Please Login", Toast.LENGTH_SHORT).show();
 
                     final Intent intent = new Intent(Splash.this, Login.class);
                     Thread timer = new Thread() {

@@ -86,7 +86,6 @@ public class Profile extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
-                    Toast.makeText(getApplicationContext(), "Please Login", Toast.LENGTH_SHORT).show();
                     Intent I = new Intent(getApplicationContext(), Login.class);
                     startActivity(I);
                 } else {

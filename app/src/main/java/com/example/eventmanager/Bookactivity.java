@@ -3,6 +3,7 @@ package com.example.eventmanager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -55,7 +56,8 @@ public class Bookactivity extends AppCompatActivity {
     //    TextView tv, tv1;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
-    ImageView imageView, image, map,download;
+    ImageView imageView, image, map;
+    CardView download;
     String center_name1;
     String event_name1;
     String stime1;
@@ -127,7 +129,7 @@ public class Bookactivity extends AppCompatActivity {
         book = findViewById(R.id.book);
         amount = findViewById(R.id.amount);
         tickets = findViewById(R.id.tickets);
-        map = findViewById(R.id.map);
+        //map = findViewById(R.id.map);
 
         amount_click = findViewById(R.id.amount_click);
 
@@ -394,7 +396,7 @@ public class Bookactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               
+
 
                 Intent intent1 = new Intent(Intent.ACTION_VIEW);
                 intent1.setData(Uri.parse("geo: 12.9344, 77.6061"));
