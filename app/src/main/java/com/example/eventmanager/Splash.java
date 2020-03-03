@@ -27,14 +27,14 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        text = findViewById(R.id.text);
-        /* Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);*/
+       /* text = findViewById(R.id.text);
+        *//* Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);*//*
 
         Animation myanim1 = AnimationUtils.loadAnimation(this, R.anim.zoomout);
 
         //imageView.setAnimation(myanim);
         text.setAnimation(myanim1);
-
+*/
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -48,7 +48,7 @@ public class Splash extends AppCompatActivity {
                     Thread timer = new Thread() {
                         public void run() {
                             try {
-                                sleep(5000);
+                                sleep(3000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } finally {

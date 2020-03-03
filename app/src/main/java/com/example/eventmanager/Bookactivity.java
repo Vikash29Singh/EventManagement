@@ -210,7 +210,7 @@ public class Bookactivity extends AppCompatActivity {
 
         //amount.setText(price);
 
-        amount_click.setOnClickListener(new View.OnClickListener() {
+        book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -294,7 +294,7 @@ public class Bookactivity extends AppCompatActivity {
             }
         });
 
-        book.setOnClickListener(new View.OnClickListener() {
+        /*book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -304,7 +304,7 @@ public class Bookactivity extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
         //amount.setText(grand_tot);
 
@@ -374,7 +374,7 @@ public class Bookactivity extends AppCompatActivity {
 
 
                 image_view = dataSnapshot.child("imageView").getValue(String.class);
-                Picasso.get().load(image_view).placeholder(R.drawable.applogoblack).into(imageView);
+                Picasso.get().load(image_view).placeholder(R.drawable.load).into(imageView);
                 String center_name1 = dataSnapshot.child("center_name").getValue(String.class);
                 center_name.setText(center_name1);
 
@@ -427,7 +427,7 @@ public class Bookactivity extends AppCompatActivity {
         }
     }
 
-    private void downloadBroucher() {
+   /* private void downloadBroucher() {
         // databaseReference.child("imageView").addOnSu
     }
 
@@ -440,76 +440,14 @@ public class Bookactivity extends AppCompatActivity {
         request.setDestinationInExternalFilesDir(context, destinationDirectory, filename + fileExtension);
         downloadManager.enqueue(request);
     }
-
-
-
-      /* // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-       // String current_uid = user.getUid(); // user.getUid() will return null if you are not log in
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-
-        Query query = db.child("Leads").child("Generated").orderByChild("userid").equalTo(id);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // do something
-
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    });*/
-
-        /*MyReceiver = new MyReceiver();
-
-        broadcastIntent();
 */
 
-
-    /*public void broadcastIntent() {
-        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(MyReceiver);
-    }
-*/
-/*
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        databaseReference.orderByChild("event_name").equalTo(event_name1).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //image = dataSnapshot.child("imageView").getValue().toString();
-                // Picasso.get().load(image).into(imageView);
-                //Picasso.get().load(model.getImageView()).into(holder.imageView);
-               *//*String center_name1 = dataSnapshot.child("center_name").getValue().toString();
-               center_name.setText(center_name1);
-              *//*  *//* image = dataSnapshot.getValue(String.class);
-                Picasso.get().load(image).into(imageView);*//*
-                //Dashboard_item_model model = dataSnapshot.getValue(Dashboard_item_model.class);
-                *//*String center_name1 = dataSnapshot.getValue(String.class);
-                center_name.setText(center_name1);*//*
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Error....!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
     @Override
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
+
 public void booking(){
     Intent intent = new Intent(Bookactivity.this, PaymentActivity.class);
     intent.putExtra("amount", amount.getText().toString());

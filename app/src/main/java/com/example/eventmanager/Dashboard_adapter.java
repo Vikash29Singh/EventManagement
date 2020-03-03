@@ -87,7 +87,7 @@ public class Dashboard_adapter extends RecyclerView.Adapter<Dashboard_adapter.My
         holder.price.setText(model.getPrice());
         holder.stime.setText(model.getStime() + " Onwards");
         //holder.price.getText();
-        Picasso.get().load(model.getImageView()).placeholder(R.drawable.applogoblack).fit().into(holder.imageView);
+        Picasso.get().load(model.getImageView()).placeholder(R.drawable.load).fit().into(holder.imageView);
         //holder.center_name.setText(model.getCenter_name());
         // holder.progressBar.setProgress(model.getLess_weight() * 20);
         //holder.price.setVisibility(View.INVISIBLE);
