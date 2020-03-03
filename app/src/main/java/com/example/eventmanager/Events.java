@@ -1,5 +1,6 @@
 package com.example.eventmanager;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
     private DatabaseReference databaseReference;
     //private FirebaseMethods firebaseMethods;
     private int imagecount = 0;
+    private ProgressDialog mProgress;
 
     @Nullable
     @Override
@@ -52,7 +54,13 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
 
         databaseReference = FirebaseDatabase.getInstance().getReference("event");
         //final String single_view = getRef(position).getKey();
-
+//progress bar
+        mProgress = new ProgressDialog(getActivity(), R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        mProgress.setIndeterminate(true);
+        //mProgress.setTitle("Processing...");
+        mProgress.setMessage("Loading");
+        mProgress.setCancelable(false);
+        mProgress.show();
 
         modelist = new ArrayList<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -69,7 +77,7 @@ public class Events extends Fragment implements Dashboard_adapter.ClickAdapterLi
 
                 dashboard_adapter = new Dashboard_adapter(getActivity(), modelist, Events.this);
                 recyclerView.setAdapter(dashboard_adapter);
-
+                mProgress.dismiss();
                /* Asyncprogress T = new Asyncprogress(getContext());
                 T.execute();   // this will call do in background
 */

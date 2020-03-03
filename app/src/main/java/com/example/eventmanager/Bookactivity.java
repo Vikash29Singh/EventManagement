@@ -94,6 +94,8 @@ public class Bookactivity extends AppCompatActivity {
 
         myDialog = new Dialog(this);
 
+
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
