@@ -69,6 +69,7 @@ public class Bookactivity extends AppCompatActivity {
 
     String pricex;
     int count=1;
+
     int grand_tot;
 
     //int count=1;
