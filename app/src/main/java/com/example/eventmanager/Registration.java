@@ -118,7 +118,7 @@ public class Registration extends AppCompatActivity {
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    
+
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), "Registration Succesfull", Toast.LENGTH_LONG).show();
                                     } else {
